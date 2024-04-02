@@ -1,19 +1,17 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import { FormsModule } from '@angular/forms';
-import { SetorDetalheComponent } from './setor-detalhe/setor-detalhe.component';
-import { SetoresRoutingModule } from './setores-routing-module';
+import { SetoresRoutingModule } from './setores-routing.module';
+import { SetorListagemComponent } from './setor-listagem/setor-listagem.component';
 
 
 @NgModule({
   declarations: [
-    SetorDetalheComponent,
+    SetorListagemComponent
   ],
   imports: [
     CommonModule,
-    SetoresRoutingModule,
-    FormsModule,
+    SetoresRoutingModule
   ]
 })
 export class SetoresModule { }
