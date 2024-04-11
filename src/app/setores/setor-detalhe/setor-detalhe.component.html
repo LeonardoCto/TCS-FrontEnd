@@ -1,20 +1,7 @@
 <div class="container-fluid">
-    <h2>Novo Setor</h2>
+    <div id="forgot-password-container">
 
-    <form #ngForm="ngForm">
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label for="nome">Nome</label>
-                <input [ngClass]="((!setor.nome
-                                  || (setor.nome && setor.nome.length < 5))
-                                      && ngForm.submitted)
-                                      ? 'form-control is-invalid' : 'form-control'"
-                       [(ngModel)]="setor.nome"
-                       minlength="3" name="nome"
-                       required>
-                <div class="invalid-feedback">Informe um nome com no mínimo 3 caracteres</div>
-            </div>
-            </div>
-        </div>
-    </form>
+      <nav> </nav>
+      
+      </div>
 </div>
