@@ -11,7 +11,7 @@ import { SetorService } from 'src/app/shared/service/setor.service';
 })
 export class SetorDetalheComponent implements OnInit {
     ngOnInit(): void {
-        
+
     }
 
   public idSetor: number;
@@ -25,5 +25,5 @@ export class SetorDetalheComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute) { }
 
- 
+
 }
