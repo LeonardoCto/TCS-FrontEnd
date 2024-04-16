@@ -3,8 +3,7 @@ export class Mensagem{
         public id: number,
         public conteudo: string,
         public idSetor: number,
-        public idMensagemPai: number | null,
-        public inputPai: number | null,
+        public inputPai: string | null,
         public mensagemFilhas: Array<Mensagem> | null
     ){}
 }

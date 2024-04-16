@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 const routes: Routes = [
   { path: '', component: AppComponent },
   { 
-    path: 'arvoreMensagem', loadChildren: ()=> import('./arvore-mensagem/arvore-mensagem.module')
+    path: 'mensagens', loadChildren: ()=> import('./arvore-mensagem/arvore-mensagem.module')
     .then(m => m.ArvoreMensagemModule)
   }
 ];
