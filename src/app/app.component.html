@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- ICONS -->
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  <!-- STYLESHEET -->
-  <link rel="stylesheet" href="app.component.scss" />
 
-  <title>Sidebar</title>
-</head>
+
 <body>
   <div class="container">
     <div class="sidebar">
@@ -39,7 +28,7 @@
             <li>
               <a href="setores/detalhe">
                 <i class="icon ph-bold ph-file-text"></i>
-                <span class="text">Setores</span>
+                <span (click)="setoresDetalhea()"    class="text">Setores</span>
               </a>
             </li>
             <li>

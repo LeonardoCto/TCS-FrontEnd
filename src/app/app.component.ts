@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-
+import { SetorService } from './shared/service/setor.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,16 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   title = 'TCS-FrontEnd';
+
+  constructor(
+    private router: Router,
+    private setorService: SetorService
+  ) {
+
+  }
+
+
+setoresDetalhea(){
+  this.router.navigate(['setores/detalhe']);
+}
 }

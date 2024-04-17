@@ -8,10 +8,7 @@ const routes: Routes = [
   {
     path: 'setores',
     loadChildren:() => import('./setores/setores.module').then(m => m.SetoresModule)
-  },
-  {
-    path: 'setor-detalhe', component: SetorDetalheComponent }
-
+  }
 ];
 
 @NgModule({
