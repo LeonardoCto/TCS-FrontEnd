@@ -8,7 +8,7 @@
   font-family: "Inter", sans-serif;
 }
 body {
-  background-color: #589AE8;
+  background-color: #dbe2f4;
 }
 .container {
   display: flex;
@@ -23,7 +23,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  background-color: #eeeeee;
+  background-color: #fff;
   padding: 24px;
   border-radius: 30px;
   transition: all 0.3s;
@@ -121,9 +121,9 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: #ffffff;
+  color: #757575;
   border: 2px solid #f6f6f6;
-  background-color: #1f6dcc;
+  background-color: #fff;
 }
 .menu-btn:hover i {
   color: #000;
@@ -200,5 +200,4 @@ body {
   text-align: center;
   font-size: 3rem;
 }
-
 

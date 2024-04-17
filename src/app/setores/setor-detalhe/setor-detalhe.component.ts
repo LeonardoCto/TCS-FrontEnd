@@ -14,9 +14,6 @@ export class SetorDetalheComponent implements OnInit {
 
     }
 
-  public idSetor: number;
-  public setor: Setor = new Setor();
-  public nome: string[];
 
   @ViewChild('ngForm', { static: true }) // Make sure to specify static flag
   public ngForm!: NgForm;
