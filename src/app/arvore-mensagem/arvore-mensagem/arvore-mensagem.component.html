@@ -1,4 +1,11 @@
 <div class="container">
     <h1>Arvore de mensagens</h1>
-    {{ arvoreMensagem | json}}
+    <p-tree [value]= "arvoreMensagem">
+        <ng-template let-node pTemplate="default">
+            <div [innerHTML]="node.inputPai"></div>
+            <hr>
+            <div [innerHTML]="node.label"></div>
+            <hr>
+        </ng-template>
+    </p-tree>
 </div>

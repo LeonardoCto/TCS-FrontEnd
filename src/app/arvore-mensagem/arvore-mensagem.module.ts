@@ -6,7 +6,7 @@ import { ArvoreMensagemComponent } from './arvore-mensagem/arvore-mensagem.compo
 import { FormsModule } from '@angular/forms';
 import { ArvoreMensagemService } from './arvore-mensagem.service';
 import { HttpClientModule } from '@angular/common/http';
-
+import { TreeModule } from 'primeng/tree';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     ArvoreMensagemRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    TreeModule,
   ],
   providers: [ArvoreMensagemService],
 })
