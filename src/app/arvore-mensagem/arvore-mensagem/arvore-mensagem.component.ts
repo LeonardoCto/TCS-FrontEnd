@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Mensagem } from 'src/app/shared/model/entity/Mensagem';
 import { ArvoreMensagemService } from '../arvore-mensagem.service';
-import { TreeNode } from 'primeng/api';
+import { GrafoMensagemDto } from 'src/app/shared/model/dto/GrafoMensagemDto';
 
 @Component({
   selector: 'app-arvore-mensagem',
@@ -9,15 +8,14 @@ import { TreeNode } from 'primeng/api';
   styleUrls: ['./arvore-mensagem.component.scss']
 })
 export class ArvoreMensagemComponent implements OnInit {
-  public nome : string = "Gabriel";
-  public arvoreMensagem: TreeNode<Mensagem>[] | null = [];
+  public grafo : GrafoMensagemDto;
 
   constructor(private arvoreMensagemService: ArvoreMensagemService){}
 
   ngOnInit(){
     this.arvoreMensagemService.obterArvoreMensagem()
       .subscribe((resultado)=>{
-        this.arvoreMensagem?.push(resultado);
+        this.grafo = resultado;
       },
       (erro) => {
         console.log(erro)

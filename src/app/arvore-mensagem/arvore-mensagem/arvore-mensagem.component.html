@@ -1,11 +1,10 @@
 <div class="container">
-    <h1>Arvore de mensagens</h1>
-    <p-tree [value]= "arvoreMensagem">
-        <ng-template let-node pTemplate="default">
-            <div [innerHTML]="node.inputPai"></div>
-            <hr>
-            <div [innerHTML]="node.label"></div>
-            <hr>
-        </ng-template>
-    </p-tree>
+    <h1>Gráfico de mensagens</h1>
+    <ngx-graph
+    class="chart-container"
+    [view]="[800, 200]"
+    [showMiniMap]="true"
+    [links]="grafo.edges"
+    [nodes]="grafo.nodes">
+    </ngx-graph>
 </div>
