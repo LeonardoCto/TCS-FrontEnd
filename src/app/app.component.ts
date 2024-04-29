@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { SetorService } from './shared/service/setor.service';
 import { Router } from '@angular/router';
+import { SetorService } from './shared/service/setor.service';
+import { SetoresModule } from './setores/setores.module';
 
 @Component({
   selector: 'app-root',
@@ -11,16 +12,19 @@ import { Router } from '@angular/router';
 
 export class AppComponent {
   title = 'TCS-FrontEnd';
-
+  sidebarExpanded = true;
   constructor(
     private router: Router,
     private setorService: SetorService
-  ) {
+  ) {}
 
+
+  enviarParaSetorDetalhe(): void {
+    this.router.navigate(['/setores/setor-detalhe']);
   }
 
+}
 
-setoresDetalhea(){
-  this.router.navigate(['setores/detalhe']);
-}
-}
+
+
+

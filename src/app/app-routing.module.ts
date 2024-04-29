@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SetorDetalheComponent } from './setores/setor-detalhe/setor-detalhe.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'setores', pathMatch: 'full' },
+  { path: 'setores', redirectTo: 'setor-detalhe', pathMatch: 'full' },
   {
     path: 'setores',
     loadChildren:() => import('./setores/setores.module').then(m => m.SetoresModule)
