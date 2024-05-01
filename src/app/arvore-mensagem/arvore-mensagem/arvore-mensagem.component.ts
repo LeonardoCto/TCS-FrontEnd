@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArvoreMensagemService } from '../arvore-mensagem.service';
 import { GrafoMensagemDto } from 'src/app/shared/model/dto/GrafoMensagemDto';
+import { NodeGrafoDto } from 'src/app/shared/model/dto/NodeDto';
 
 @Component({
   selector: 'app-arvore-mensagem',
@@ -20,6 +21,10 @@ export class ArvoreMensagemComponent implements OnInit {
       (erro) => {
         console.log(erro)
       });
+  }
+
+  click(node: NodeGrafoDto){
+    alert(node);
   }
 
 }

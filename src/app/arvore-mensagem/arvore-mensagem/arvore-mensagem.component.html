@@ -12,7 +12,7 @@
             </svg:marker>
         </ng-template>
         <ng-template #nodeTemplate let-node>
-            <svg:g class="node">
+            <svg:g class="node" (click)="click(node)">
             <svg:rect
                 [attr.width]="node.dimension.width"
                 [attr.height]="node.dimension.height"
