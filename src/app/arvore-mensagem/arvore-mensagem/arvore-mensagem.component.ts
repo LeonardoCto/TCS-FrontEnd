@@ -10,6 +10,7 @@ import { NodeGrafoDto } from 'src/app/shared/model/dto/NodeDto';
 })
 export class ArvoreMensagemComponent implements OnInit {
   public grafo : GrafoMensagemDto;
+  public nodeSelecionada: NodeGrafoDto | null = null;
 
   constructor(private arvoreMensagemService: ArvoreMensagemService){}
 
@@ -19,12 +20,12 @@ export class ArvoreMensagemComponent implements OnInit {
         this.grafo = resultado;
       },
       (erro) => {
-        console.log(erro)
+        console.log(erro);
       });
   }
 
-  click(node: NodeGrafoDto){
-    alert(node);
+  selecionarNode(node: NodeGrafoDto | null){
+    this.nodeSelecionada = node;
   }
 
 }

@@ -1,0 +1,37 @@
+<div *ngIf="nodeSelecionada != null">
+    <button (click)="ativarFormAdicao()">Adicionar mensagem</button>
+    <button (click)="ativarFormEdicaoMensagem()">Editar mensagem</button>
+    <button>Deletar Mensagem</button>
+    <button (click)="desselecionar()">Desselecionar</button>
+</div>
+
+<!-- Formulário de adição de mensagem -->
+<div *ngIf="formAdicao">
+    <form>
+        <label>Conteudo da mensagem:</label>
+        <input type="text">
+        <label>Conteudo do input pai:</label>
+        <input type="text">
+        <button type="button">Adicionar mensagem</button>
+    </form>
+</div>
+
+<!-- Formulário de edição de mensagem -->
+<div *ngIf="formEdicaoMensagem">
+    <form>
+        <label>Conteudo da mensagem</label>
+        <input type="text">
+        <button type="button">Salvar edição</button>
+    </form>
+</div>
+
+<!-- Formulário de edição de input -->
+<div *ngIf="formEdicaoInput">
+    <form>
+        <label>Conteudo do input</label>
+        <input type="text">
+        <button type="button">Salvar edição</button>
+    </form>
+</div>
+
+<!-- TODO Formulário de exclusão de mensagem -->

@@ -7,10 +7,12 @@ import { FormsModule } from '@angular/forms';
 import { ArvoreMensagemService } from './arvore-mensagem.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
+import { FormularioArvoreComponent } from './formulario-arvore/formulario-arvore.component';
 
 @NgModule({
   declarations: [
-    ArvoreMensagemComponent
+    ArvoreMensagemComponent,
+    FormularioArvoreComponent
   ],
   imports: [
     CommonModule,
