@@ -1,27 +1,50 @@
 # TCSFrontEnd
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.5.
+## Politica de privacidade
 
-## Development server
+Data de regimento: 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+O sistema GL é um sistema de automação de atendimento via WhatsApp. Por nosso sistema mexer diretamente com algo tão sensível como o WhatsApp, nos preocupamos muito com a segurança de nossos usuários e fazemos o máximo para garantir que todos os dados que trafegam pelo nosso sistema estejam seguros. 
 
-## Code scaffolding
+1. Informações Coletadas 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Ao utilizar nosso sistema, iremos coletar informações pessoais sendo elas: nome, endereço de e-mail e números de telefone. 
+Coletaremos também informações de uso, sendo elas: o conteúdo das mensagens recebidas pelos números de WhatsApp fornecido, o número do remetente das mensagens, o conteúdo das mensagens automáticas que serão enviadas e o número do destinatário das mensagens enviadas automaticamente. 
 
-## Build
+2. Uso das Informações 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Utilizamos as informações coletadas descritas no tópico anterior com o intuito de garantir uma experiencia personalizada no sistema, o funcionamento correto de todas as funcionalidades do sistema e o cumprimento da Lei n 13709 - Lei Geral de Proteção de Dados (LGPD). 
 
-## Running unit tests
+3. Compartilhamento de Informações 
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Não compartilhamos nenhuma das suas informações pessoais com terceiros, exceto em casos em que seja exigido para o cumprimento de leis ou por autoridades estatais. 
 
-## Running end-to-end tests
+4. Proteção de Dados 
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Aplicamos os seguintes mecanismos de segurança para manter seus dados seguros: 
 
-## Further help
+- criptografia 
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- hashing 
+
+- controle de acesso 
+
+5. Retenção de Dados 
+
+Mantemos suas informações enquanto sua conta estiver registrada no sistema, após o encerramento da sua conta, todos os seus dados fornecidos serão deletados. 
+
+Utilizaremos os dados descritos nesta política de privacidade para manter o sistema funcionando de forma eficiente e personalizada. 
+
+6. Seus Direitos de Privacidade 
+
+Você possui o direito de acessar, alterar ou excluir quaisquer informações pessoais no sistema. 
+Você possui o direito de encerrar sua conta no sistema a qualquer momento, resultando na exclusão de todos os seus dados no sistema. 
+
+7. Alterações na Política de Privacidade 
+
+Nos damos o direito de atualizar esta política de privacidade a qualquer momento. Em caso de alteração das políticas de privacidade, um e-mail será enviado para o endereço de e-mail fornecido no seu cadastro no sistema. O uso contínuo do nosso sistema após a publicação das alterações desta política de privacidade será visto como concordância a essas alterações. 
+
+8. Consentimento 
+
+Ao utilizar nosso sistema, você concorda com a coleta, uso e retenção dos seus dados pessoais como está descrito nesta política de privacidade. 
+
