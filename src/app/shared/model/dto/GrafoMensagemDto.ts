@@ -1,5 +1,5 @@
-import { NodeGrafoDto } from "./NodeDto";
-import { EdgeGrafoDto } from "./EdgeDto";
+import { NodeGrafoDto } from "./NodeGrafoDto";
+import { EdgeGrafoDto } from "./EdgeGrafoDto";
 
 export interface GrafoMensagemDto {
     nodes: NodeGrafoDto[];

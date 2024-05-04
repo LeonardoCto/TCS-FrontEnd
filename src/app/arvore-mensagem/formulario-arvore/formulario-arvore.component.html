@@ -7,12 +7,13 @@
 
 <!-- Formulário de adição de mensagem -->
 <div *ngIf="formAdicao">
-    <form>
+<form #novaMensagemForm="ngForm">
+    {{novaMensagemForm.value | json}}
         <label>Conteudo da mensagem:</label>
-        <input type="text">
+        <input type="text" name="novaMensagem" ngModel>
         <label>Conteudo do input pai:</label>
-        <input type="text">
-        <button type="button">Adicionar mensagem</button>
+        <input type="text" name="novoInput" ngModel>
+        <button type="button" (click)="adicionarMensagem(novaMensagemForm)">Adicionar mensagem</button>
     </form>
 </div>
 

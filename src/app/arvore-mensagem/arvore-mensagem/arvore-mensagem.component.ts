@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArvoreMensagemService } from '../arvore-mensagem.service';
 import { GrafoMensagemDto } from 'src/app/shared/model/dto/GrafoMensagemDto';
-import { NodeGrafoDto } from 'src/app/shared/model/dto/NodeDto';
+import { NodeGrafoDto } from 'src/app/shared/model/dto/NodeGrafoDto';
 
 @Component({
   selector: 'app-arvore-mensagem',

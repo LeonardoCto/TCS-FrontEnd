@@ -8,7 +8,7 @@
       [showMiniMap]="true"
       [links]="grafo.edges"
       [nodes]="grafo.nodes">
-          <ng-template #defsTemplate>
+          <ng-template #defsTemplate >
               <svg:marker id="arrow" viewBox="0 -5 10 10" refX="8" refY="0" markerWidth="4" markerHeight="4" orient="auto">
                   <svg:path d="M0,-5L10,0L0,5" class="arrow-head" />
               </svg:marker>
@@ -43,4 +43,8 @@
     </div>
 </div>
 
-<app-formulario-arvore [nodeSelecionada]="nodeSelecionada" (eventoDesselecionar)="selecionarNode(null)"></app-formulario-arvore>
+<app-formulario-arvore 
+[nodeSelecionada]="nodeSelecionada"
+[arestas]="grafo.edges"
+(eventoDesselecionar)="selecionarNode(null)"
+></app-formulario-arvore>
