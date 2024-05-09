@@ -4,8 +4,8 @@ import { SetorDetalheComponent } from './setor-detalhe/setor-detalhe.component';
 import { SetorListagemComponent } from './setor-listagem/setor-listagem.component';
 
 const routes: Routes = [
-  {path: 'detalhe', component: SetorDetalheComponent},
-  {path: 'listagem', component: SetorListagemComponent }
+  {path: 'setor-detalhe', component: SetorDetalheComponent},
+  {path: 'setor-listagem', component: SetorListagemComponent }
 ];
 
 @NgModule({

@@ -11,11 +11,8 @@ import { SetorService } from 'src/app/shared/service/setor.service';
 })
 export class SetorDetalheComponent implements OnInit {
     ngOnInit(): void {
-
     }
-
-
-  @ViewChild('ngForm', { static: true }) // Make sure to specify static flag
+  @ViewChild('ngForm', { static: true })
   public ngForm!: NgForm;
 
   constructor(private setorService: SetorService,
