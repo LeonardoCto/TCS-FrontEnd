@@ -1,4 +1,4 @@
-<div>
+<div id ='sideS' class="flex">
   <nav class="flex flex-col bg-blue-900 w-64 h-screen px-4 tex-gray-900 border border-blue-900">
     <div class="flex flex-wrap mt-10">
       <div class="w-1/2">
@@ -9,8 +9,8 @@
       </div>
     </div>
 
-    <div id ="messagecs" class="mt-10 mb-2 ">
-      <ul class="ml-40">
+    <div class="mt-10 mb-2 ">
+      <ul >
         <li class="mb-2 px-4 py-4 text-gray-100 flex flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg">
           <img width="35" height="25" src="https://img.icons8.com/pastel-glyph/64/FFFFFF/talk--v1.png" alt="talk--v1"/>
           <a href="#">
@@ -18,9 +18,11 @@
           </a>
         </li>
 
-        <li (click)="enviarParaSetorDetalhe()" class="mb-2 px-4 py-4 text-gray-100 flex flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg">
+        <li class="mb-2 px-4 py-4 text-gray-100 flex flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg">
           <img width="25" height="25" src="https://img.icons8.com/external-kmg-design-basic-outline-kmg-design/32/FFFFFF/external-dashboard-ui-essential-kmg-design-basic-outline-kmg-design.png" alt="external-dashboard-ui-essential-kmg-design-basic-outline-kmg-design"/>
-          <span class="ml-2">Setores</span>
+          <span class="ml-2">
+          <a routerLink="setor-detalhe" routerLinkActive="active" ariaCurrentWhenActive="page">Setores</a>
+        </span>
         </li>
 
         <li class="mb-2 px-4 py-4 text-gray-100 flex flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg">
@@ -43,10 +45,11 @@
             <span class="ml-2">Perfil</span>
           </a>
         </li>
-
-      
       </ul>
     </div>
   </nav>
+  <div class="flex-1">
+    <router-outlet></router-outlet>
+  </div>
 </div>
-<router-outlet></router-outlet>
+
