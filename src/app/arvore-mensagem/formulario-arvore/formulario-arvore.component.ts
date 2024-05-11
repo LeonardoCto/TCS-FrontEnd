@@ -4,6 +4,7 @@ import { EdgeGrafoDto } from 'src/app/shared/model/dto/EdgeGrafoDto';
 import { InputSalvarDto } from 'src/app/shared/model/dto/InputSalvarDto';
 import { MensagemSalvarDto } from 'src/app/shared/model/dto/MensagemSalvarDto';
 import { NodeGrafoDto } from 'src/app/shared/model/dto/NodeGrafoDto';
+import { ArvoreMensagemService } from '../arvore-mensagem.service';
 
 @Component({
   selector: 'app-formulario-arvore',
@@ -15,6 +16,8 @@ export class FormularioArvoreComponent {
   public eventoDesselecionar = new EventEmitter();
   @Output()
   public eventoRecebeArestas = new EventEmitter<EdgeGrafoDto[]>();
+  @Output()
+  public eventoAtualizarGrafo = new EventEmitter();
   @Input() 
   public nodeSelecionada: NodeGrafoDto | null = null;
   @Input()
@@ -23,22 +26,20 @@ export class FormularioArvoreComponent {
   public formEdicaoMensagem: boolean = false;
   public formEdicaoInput: boolean = false;
 
-  
+  constructor(private arvoreMensagemService: ArvoreMensagemService){}
+
   recebeArestas(arestas: EdgeGrafoDto[]){
     this.arestas = arestas;
   }
   
   adicionarMensagem(form: NgForm){
-    let aresta: EdgeGrafoDto | undefined = this.arestas.find(
-      (aresta)=> aresta.source == this.nodeSelecionada?.id);
-      if(aresta != undefined && this.nodeSelecionada != null){
-      let novaAresta: InputSalvarDto = new InputSalvarDto();
-      novaAresta.conteudo = form.value.novoInput;
-      novaAresta.idMensagemPai = +aresta.source;
-      let novaMensagem: MensagemSalvarDto = new MensagemSalvarDto(this.nodeSelecionada,novaAresta);
-      novaMensagem.conteudo = form.value.novaMensagem;
-      console.log(novaMensagem);
-    }
+    this.arvoreMensagemService.adicionarMensagem(this.nodeSelecionada,form)
+      .subscribe((resultado) => {
+        this.eventoAtualizarGrafo.emit();
+      },
+      (err) => {
+        console.log("Erro: " + err);
+      });
   }
 
   ativarFormAdicao() {

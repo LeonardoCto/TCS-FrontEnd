@@ -15,13 +15,17 @@ export class ArvoreMensagemComponent implements OnInit {
   constructor(private arvoreMensagemService: ArvoreMensagemService){}
 
   ngOnInit(){
+    this.atualizarGrafo();
+  }
+
+  atualizarGrafo(){
     this.arvoreMensagemService.obterArvoreMensagem()
-      .subscribe((resultado)=>{
-        this.grafo = resultado;
-      },
-      (erro) => {
-        console.log(erro);
-      });
+    .subscribe((resultado)=>{
+      this.grafo = resultado;
+    },
+    (erro) => {
+      console.log(erro);
+    });
   }
 
   selecionarNode(node: NodeGrafoDto | null){
