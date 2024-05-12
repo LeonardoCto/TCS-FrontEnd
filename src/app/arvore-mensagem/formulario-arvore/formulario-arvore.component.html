@@ -9,7 +9,7 @@
 </div>
 
 <!-- Formulário de adição de mensagem -->
-<div *ngIf="formAdicao">
+<div *ngIf="formAdicao && nodeSelecionada != null">
     <form #novaMensagemForm="ngForm">
         <label>Conteudo da mensagem:</label>
         <input type="text" name="novaMensagem" ngModel>
@@ -20,7 +20,7 @@
 </div>
 
 <!-- Formulário de edição de mensagem -->
-<div *ngIf="formEdicaoMensagem">
+<div *ngIf="formEdicaoMensagem && nodeSelecionada != null">
     <form #mensagemEditadaForm="ngForm">
         <label>Conteudo da mensagem</label>
         <input type="text" name="novoConteudo" ngModel>
@@ -29,7 +29,7 @@
 </div>
 
 <!-- Formulário de edição de input -->
-<div *ngIf="formEdicaoInput">
+<div *ngIf="formEdicaoInput && edgeSelecionada != null">
     <form #inputEditadoForm="ngForm">
         <label>Conteudo do input</label>
         <input type="text" name="inputEditado" ngModel>

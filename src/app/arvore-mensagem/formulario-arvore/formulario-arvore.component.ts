@@ -91,6 +91,7 @@ export class FormularioArvoreComponent {
     this.formAdicao = false;
     this.formEdicaoMensagem = false;
     this.formEdicaoInput = false;
+    console.log("desativou");
   }
   
   desselecionar(){
