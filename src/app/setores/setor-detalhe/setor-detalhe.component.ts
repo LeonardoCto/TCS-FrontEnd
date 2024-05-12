@@ -12,7 +12,13 @@ import { SetorService } from 'src/app/shared/service/setor.service';
 export class SetorDetalheComponent implements OnInit {
     ngOnInit(): void {
     }
-    
+
+
+    enviarParaSetorCadastro(): void{
+      this.router.navigate(['/setores/setor-listagem'])
+    }
+
+
   @ViewChild('ngForm', { static: true })
   public ngForm!: NgForm;
 
