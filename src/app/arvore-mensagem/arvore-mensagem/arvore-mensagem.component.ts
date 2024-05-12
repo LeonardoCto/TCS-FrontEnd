@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ArvoreMensagemService } from '../arvore-mensagem.service';
 import { GrafoMensagemDto } from 'src/app/shared/model/dto/GrafoMensagemDto';
 import { NodeGrafoDto } from 'src/app/shared/model/dto/NodeGrafoDto';
+import { EdgeGrafoDto } from 'src/app/shared/model/dto/EdgeGrafoDto';
 
 @Component({
   selector: 'app-arvore-mensagem',
@@ -11,6 +12,7 @@ import { NodeGrafoDto } from 'src/app/shared/model/dto/NodeGrafoDto';
 export class ArvoreMensagemComponent implements OnInit {
   public grafo : GrafoMensagemDto;
   public nodeSelecionada: NodeGrafoDto | null = null;
+  public edgeSelecionada: EdgeGrafoDto | null = null;
 
   constructor(private arvoreMensagemService: ArvoreMensagemService){}
 
@@ -29,7 +31,13 @@ export class ArvoreMensagemComponent implements OnInit {
   }
 
   selecionarNode(node: NodeGrafoDto | null){
+    this.edgeSelecionada = null;
     this.nodeSelecionada = node;
+  }
+
+  selecionarEdge(edge: EdgeGrafoDto | null){
+    this.nodeSelecionada = null;
+    this.edgeSelecionada = edge;
   }
 
 }

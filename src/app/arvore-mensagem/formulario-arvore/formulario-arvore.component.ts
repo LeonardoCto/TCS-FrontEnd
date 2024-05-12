@@ -21,6 +21,8 @@ export class FormularioArvoreComponent {
   @Input() 
   public nodeSelecionada: NodeGrafoDto | null = null;
   @Input()
+  public edgeSelecionada: EdgeGrafoDto | null = null;
+  @Input()
   public arestas: EdgeGrafoDto[];
   public formAdicao: boolean = false;
   public formEdicaoMensagem: boolean = false;
@@ -40,6 +42,34 @@ export class FormularioArvoreComponent {
       (err) => {
         console.log("Erro: " + err);
       });
+  }
+
+  editarMensagem(form: NgForm){
+    this.arvoreMensagemService.editarMensagem(this.nodeSelecionada, form)
+    .subscribe(() => {
+      this.eventoAtualizarGrafo.emit();
+    }, 
+    (err) =>{ 
+      console.log(err);
+    });
+  }
+
+  editarInput(form: NgForm){
+    this.arvoreMensagemService.editarInput(this.edgeSelecionada, form)?.subscribe(()=>{
+      this.eventoAtualizarGrafo.emit();
+    },
+    (err)=>{
+      console.log(err);
+    });
+  }
+
+  deletarMensagem(node: NodeGrafoDto){
+    this.arvoreMensagemService.deletarMensagem(node).subscribe(()=>{
+      this.eventoAtualizarGrafo.emit();
+    },
+    (err) => {
+      console.log(err);
+    });
   }
 
   ativarFormAdicao() {

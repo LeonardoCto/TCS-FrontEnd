@@ -26,7 +26,7 @@
               </svg:g>
           </ng-template>
           <ng-template #linkTemplate let-link>
-              <svg:g class="edge">
+              <svg:g class="edge" (click)="selecionarEdge(link)">
                 <svg:path class="line" stroke-width="2" marker-end="url(#arrow)"></svg:path>
                 <svg:text class="edge-label" text-anchor="middle">
                   <textPath
@@ -45,6 +45,7 @@
 
 <app-formulario-arvore 
 [nodeSelecionada]="nodeSelecionada"
+[edgeSelecionada]="edgeSelecionada"
 [arestas]="grafo.edges"
 (eventoDesselecionar)="selecionarNode(null)"
 (eventoAtualizarGrafo)="atualizarGrafo()"

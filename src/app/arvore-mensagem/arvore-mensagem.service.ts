@@ -7,6 +7,8 @@ import { NodeGrafoDto } from '../shared/model/dto/NodeGrafoDto';
 import { InputSalvarDto } from '../shared/model/dto/InputSalvarDto';
 import { NgForm } from '@angular/forms';
 import { MensagemSalvarDto } from '../shared/model/dto/MensagemSalvarDto';
+import { Mensagem } from '../shared/model/entity/Mensagem';
+import { InputEntity } from '../shared/model/entity/InputEntity';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +27,36 @@ export class ArvoreMensagemService {
     let requestBody = this.novaMensagem(nodeSelecionada,form);
     return this.http.post<MensagemSalvarDto>(this.urlBase, requestBody);
   }
+
+  editarMensagem(nodeSelecionada: NodeGrafoDto | null, form: NgForm) {
+    let requestBody = this.mensagemEditada(nodeSelecionada,form);
+    return this.http.put<Mensagem>(this.urlBase, requestBody);
+  }
+  
+  deletarMensagem(node: NodeGrafoDto){
+    let requestBody: Mensagem = new Mensagem(node);
+    return this.http.post<Mensagem>(`${this.urlBase}/delete`, requestBody);
+  }
+
+  editarInput(edge: EdgeGrafoDto | null, form: NgForm){
+    if(edge == null){
+      return;
+    }
+    let requestBody: InputEntity = new InputEntity(edge);
+    console.log(form.value.inputEditado);
+    requestBody.conteudo = form.value.inputEditado;
+    return this.http.put<InputEntity>("http://localhost:8080/input", requestBody);
+  }
+
+  mensagemEditada(node: NodeGrafoDto | null, form: NgForm){
+    if(node == null){
+      return;
+    }
+    let mensagemEditada = new Mensagem(node)
+    mensagemEditada.conteudo = form.value.novoConteudo;
+    return mensagemEditada;
+  }
+
 
   novaMensagem(nodeSelecionada: NodeGrafoDto | null, form: NgForm){
     let retorno: MensagemSalvarDto | null = null;
