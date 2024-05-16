@@ -28,8 +28,10 @@ export class AppComponent {
       }
     });
   }
-  ngOnInit(): void{}
-  
+  ngOnInit(): void{
+    
+  }
+
   enviarParaSetorDetalhe(): void {
     this.router.navigate(['/setores/setor-detalhe']);
   }
