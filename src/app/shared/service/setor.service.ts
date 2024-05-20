@@ -16,6 +16,10 @@ export class SetorService {
     return this.httpClient.post<Setor>(this.API, setor);
   }
 
+   carregarTodosSetores(): Observable<Setor[]> {
+    return this.http.get<Setor[]>('/api/setores'); 
+  }
+
   login(setor: Setor): Observable<Setor> {
     return this.httpClient.post<Setor>(`${this.API}/login`, setor);
   }
