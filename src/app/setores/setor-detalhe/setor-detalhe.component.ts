@@ -18,6 +18,11 @@ export class SetorDetalheComponent implements OnInit {
       this.router.navigate(['/setores/setor-listagem'])
     }
 
+  
+   carregarSetores() {
+    this.setorService.getAllSetores().subscribe(setores => {
+      this.setores = setores;
+    });
 
   @ViewChild('ngForm', { static: true })
   public ngForm!: NgForm;
