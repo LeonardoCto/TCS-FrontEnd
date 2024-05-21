@@ -1,4 +1,5 @@
-import { Component, ViewChild  } from '@angular/core';
+import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SetorService } from 'src/app/shared/service/setor.service';
 
@@ -13,8 +14,8 @@ export class SetorListagemComponent  {
 
   constructor(private setorService: SetorService, private router: Router) {}
 
-  cadastrar(): void {
-    this.setorService.cadastrar({ nome: this.nome, descricao: this.descricao})
+  inserir(Form: NgForm): void {
+    this.setorService.inserir({ nome: Form.value.nome, descricao: Form.value.descricao})
     .subscribe(
       (response: any) => {
         console.log(response.message); // Mensagem de confirmação da API

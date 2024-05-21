@@ -15,7 +15,7 @@ export class SetorService {
 
   constructor(private httpClient : HttpClient) { }
 
-  cadastrar(setorDTO: SetorDTO): Observable<any> {
-    return this.httpClient.post<any>(`${this.setorUrl}/cadastrar`, setorDTO);
+  inserir(setorDTO: SetorDTO): Observable<any> {
+    return this.httpClient.post<any>(`${this.setorUrl}/inserir`, setorDTO);
   }
   }
