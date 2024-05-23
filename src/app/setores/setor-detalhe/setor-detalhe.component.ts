@@ -10,9 +10,20 @@ import { SetorService } from 'src/app/shared/service/setor.service';
   styleUrls: ['./setor-detalhe.component.scss']
 })
 export class SetorDetalheComponent implements OnInit {
-    ngOnInit(): void {
-    }
 
+  public setores: Array<Setor> = new Array;
+  nome: string;
+  descricao: string;
+
+  constructor(private setorService: SetorService,
+              private router: Router,
+              private route: ActivatedRoute) { }
+
+
+    ngOnInit(): void {
+
+     this.listarTodos();
+    }
 
     enviarParaSetorCadastro(): void{
       this.router.navigate(['/setores/setor-listagem'])
@@ -22,9 +33,18 @@ export class SetorDetalheComponent implements OnInit {
   @ViewChild('ngForm', { static: true })
   public ngForm!: NgForm;
 
-  constructor(private setorService: SetorService,
-              private router: Router,
-              private route: ActivatedRoute) { }
 
 
+listarTodos(): void {
+  this.setorService.listarTodosSetores().subscribe(
+    (response: any) => {
+      console.log(response);
+      this.setores = response;
+      this.router.navigate(['setores/setor-detalhe']);
+    },
+    (error) => {
+      console.error('Erro no registro', error);
+    }
+  );
+}
 }

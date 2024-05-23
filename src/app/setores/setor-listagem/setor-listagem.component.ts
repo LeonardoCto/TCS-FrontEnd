@@ -18,7 +18,7 @@ export class SetorListagemComponent  {
     this.setorService.inserir({ nome: Form.value.nome, descricao: Form.value.descricao})
     .subscribe(
       (response: any) => {
-        console.log(response.message); // Mensagem de confirmação da API
+        console.log(response.message);
         this.router.navigate(['setores/setor-listagem']);
       },
       (error) => {

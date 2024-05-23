@@ -18,4 +18,8 @@ export class SetorService {
   inserir(setorDTO: SetorDTO): Observable<any> {
     return this.httpClient.post<any>(`${this.setorUrl}/inserir`, setorDTO);
   }
+
+  listarTodosSetores(): Observable<Array<Setor>> {
+    return this.httpClient.get<Array<Setor>>(`${this.setorUrl}/listarTodos`);
+  }
   }
