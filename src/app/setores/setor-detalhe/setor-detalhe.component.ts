@@ -11,14 +11,16 @@ import { SetorService } from 'src/app/shared/service/setor.service';
 })
 export class SetorDetalheComponent implements OnInit {
 
+  @ViewChild('ngForm', { static: true })
+  public ngForm!: NgForm;
+
+  //CONSTRUTOR
+  constructor(private setorService: SetorService, private router: Router, private route: ActivatedRoute) {}
+
+  //OBJETOS
   public setores: Array<Setor> = new Array;
   nome: string;
   descricao: string;
-
-  constructor(private setorService: SetorService,
-              private router: Router,
-              private route: ActivatedRoute) { }
-
 
     ngOnInit(): void {
 
@@ -30,11 +32,31 @@ export class SetorDetalheComponent implements OnInit {
     }
 
 
-  @ViewChild('ngForm', { static: true })
-  public ngForm!: NgForm;
 
+  //PAGINAÇÃO LISTA DE SETORES
+  currentPage = 1;
+  itemsPerPage = 4;
 
+  get paginatedSetores() {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    const end = start + this.itemsPerPage;
+    return this.setores.slice(start, end);
+  }
 
+  nextPage() {
+    if ((this.currentPage * this.itemsPerPage) < this.setores.length) {
+      this.currentPage++;
+    }
+  }
+
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+///////////////////////////////////////////////////////////////////////
+
+//METODOS DA TELA DE LISTAGEM
 listarTodos(): void {
   this.setorService.listarTodosSetores().subscribe(
     (response: any) => {

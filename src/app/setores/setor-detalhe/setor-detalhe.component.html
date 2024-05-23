@@ -34,71 +34,65 @@
     </button>
         </div>
         <div>
-            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-              <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                <table class="min-w-full leading-normal">
-                  <thead>
-                    <tr>
-                      <th
-                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Nome
-                      </th>
-                      <th
-                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Descrição
-                      </th>
-
-                      <th
-                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Visualização
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let setor of setores">
-                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <div class="flex items-center">
-                          <div class="ml-3">
-                            <p class="text-gray-900 whitespace-no-wrap">{{ setor.nome }}</p>
-                            <button class="bg-blue-500 px-4 py-3 rounded-md text-white font-semibold tracking-wide cursor-pointer">Criar/Editar mapeamento de mensagens</button>
+          <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+            <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+              <table class="min-w-full leading-normal">
+                <thead>
+                  <tr>
+                    <th
+                      class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Nome
+                    </th>
+                    <th
+                      class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Descrição
+                    </th>
+                    <th
+                      class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                      Visualização
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let setor of paginatedSetores">
+                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <div class="flex items-center">
+                        <div class="ml-3">
+                          <p class="text-gray-900 whitespace-no-wrap">{{ setor.nome }}</p>
+                          <button class="bg-blue-500 px-4 py-3 rounded-md text-white font-semibold tracking-wide cursor-pointer">Criar/Editar mapeamento de mensagens</button>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <p class="text-gray-900 whitespace-no-wrap">{{ setor.descricao }}</p>
+                    </td>
+                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <div class="flex items-center justify-between">
+                        <button class="" style="text-decoration: underline;">Visualizar setor</button>
+                        <div class="dropdown">
+                          <button class="dropbtn">...</button>
+                          <div class="dropdown-content">
+                            <a href="#">Editar</a>
+                            <a href="#">Excluir</a>
                           </div>
                         </div>
-                      </td>
-                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p class="text-gray-900 whitespace-no-wrap">{{ setor.descricao }}</p>
-                      </td>
-                      <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <div class="flex items-center justify-between">
-                          <button class="" style="text-decoration: underline;">Visualizar setor</button>
-                          <div class="dropdown">
-                            <button class="dropbtn">...</button>
-                            <div class="dropdown-content">
-                              <a href="#">Editar</a>
-                              <a href="#">Excluir</a>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-
-                  </tbody>
-                </table>
-                <div
-                  class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
-                  <span class="text-xs xs:text-sm text-gray-900">
-                                 Página
-                              </span>
-                  <div class="inline-flex mt-2 xs:mt-0">
-                    <button
-                                      class="text-sm text-indigo-50 transition duration-150 hover:bg-blue-500 bg-blue-500  font-semibold py-2 px-4 rounded-l">
-                                      Anterior
-                                  </button>
-                    &nbsp; &nbsp;
-                    <button
-                                      class="text-sm text-indigo-50 transition duration-150 hover:bg-blue-500  bg-blue-500  font-semibold py-2 px-4 rounded-r">
-                                      Próximo
-                                  </button>
-                  </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
+                <span class="text-xs xs:text-sm text-gray-900">Página {{currentPage}}</span>
+                <div class="inline-flex mt-2 xs:mt-0">
+                  <button (click)="previousPage()" [disabled]="currentPage === 1"
+                          class="text-sm text-indigo-50 transition duration-150 hover:bg-blue-500 bg-blue-500 font-semibold py-2 px-4 rounded-l">
+                    Anterior
+                  </button>
+                  &nbsp; &nbsp;
+                  <button (click)="nextPage()" [disabled]="(currentPage * itemsPerPage) >= setores.length"
+                          class="text-sm text-indigo-50 transition duration-150 hover:bg-blue-500 bg-blue-500 font-semibold py-2 px-4 rounded-r">
+                    Próximo
+                  </button>
                 </div>
               </div>
             </div>
