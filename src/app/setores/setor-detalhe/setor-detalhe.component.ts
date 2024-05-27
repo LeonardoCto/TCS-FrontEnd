@@ -19,6 +19,7 @@ export class SetorDetalheComponent implements OnInit {
 
   //OBJETOS
   public setores: Array<Setor> = new Array;
+  id: number;
   nome: string;
   descricao: string;
 
@@ -27,11 +28,11 @@ export class SetorDetalheComponent implements OnInit {
      this.listarTodos();
     }
 
+    //navegação
+
     enviarParaSetorCadastro(): void{
       this.router.navigate(['/setores/setor-listagem'])
     }
-
-
 
   //PAGINAÇÃO LISTA DE SETORES
   currentPage = 1;
@@ -57,6 +58,8 @@ export class SetorDetalheComponent implements OnInit {
 ///////////////////////////////////////////////////////////////////////
 
 //METODOS DA TELA DE LISTAGEM
+
+
 listarTodos(): void {
   this.setorService.listarTodosSetores().subscribe(
     (response: any) => {
@@ -67,6 +70,32 @@ listarTodos(): void {
     (error) => {
       console.error('Erro no registro', error);
     }
+    );
+  }
+
+  excluirSetor(setorId: number):void {
+    this.setorService.excluirSetores(setorId).subscribe(
+      (response: any) => {
+      console.log(response);
+      this.setores = response;
+      this.router.navigate(['setores/setor-detalhe']);
+    },
+    (error) => {
+      console.error('Erro no registro', error);
+    }
+    );
+}
+atualizarSetores(idSetor: number, nome: string, descricao: string): void {
+  this.setorService.atualizarSetor  ({ nome, descricao }).subscribe(
+    (response: any) => {
+      console.log(response);
+      this.setores = response;
+      this.router.navigate(['setores/setor-listagem'], { queryParams: { nome, descricao } });
+    },
+    (error) => {
+      console.error('Erro no registro', error);
+    }
   );
 }
-}
+  }
+
