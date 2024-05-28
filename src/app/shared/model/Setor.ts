@@ -1,5 +1,5 @@
 export class Setor {
-  idSetor: number;
-  nome: String;
-  descricao: String;
+  id: number;
+  nome: string;
+  descricao: string;
 }

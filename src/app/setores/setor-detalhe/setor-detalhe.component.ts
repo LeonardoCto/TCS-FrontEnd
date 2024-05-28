@@ -84,18 +84,11 @@ listarTodos(): void {
       console.error('Erro no registro', error);
     }
     );
+
 }
-atualizarSetores(idSetor: number, nome: string, descricao: string): void {
-  this.setorService.atualizarSetor  ({ nome, descricao }).subscribe(
-    (response: any) => {
-      console.log(response);
-      this.setores = response;
-      this.router.navigate(['setores/setor-listagem'], { queryParams: { nome, descricao } });
-    },
-    (error) => {
-      console.error('Erro no registro', error);
-    }
-  );
-}
+  navegarTelaSetorE(idSetor: number, nome: string, descricao: string): void {
+    this.router.navigate(['setores/setor-listagem'], { queryParams: { idSetor, nome, descricao } });
   }
+}
+
 

@@ -10,14 +10,17 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./setor-listagem.component.scss']
 })
 export class SetorListagemComponent{
+  setorId: number;
   nome: string ;
   descricao: string;
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
+      console.log(params);
       if (params['nome'] && params['descricao']) {
         this.nome = params['nome'];
         this.descricao = params['descricao'];
+        this.setorId = params['setorId']
       }
     });
   }
@@ -36,5 +39,16 @@ export class SetorListagemComponent{
       }
     );
   }
-}
 
+  atualizarSetores(idSetor: number, nome: string, descricao: string): void {
+    this.setorService.atualizarSetor({idSetor,nome, descricao }).subscribe(
+      (response: any) => {
+        console.log(response);
+        this.router.navigate(['setores/setor-detalhe'], { queryParams: { idSetor, nome, descricao } });
+      },
+      (error) => {
+        console.error('Erro no registro', error);
+      }
+    );
+}
+}

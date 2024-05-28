@@ -23,10 +23,8 @@ export class SetorService {
     return this.httpClient.get<Array<Setor>>(`${this.setorUrl}/listarTodos`);
   }
 
-  atualizarSetor(nome?: string, descrição?: string): Observable<any> {
-    const url = `${this.setorUrl}/atualizar`;
-     const body = { nome, descrição };
-      return this.httpClient.put<any>(url, body);
+  atualizarSetor(Setor: any, nome?: string, descrição?: string): Observable<any> {
+      return this.httpClient.put<any>(`${this.setorUrl}/atualizar`, Setor);
     }
 
     excluirSetores(setorId: number): Observable<void> {
