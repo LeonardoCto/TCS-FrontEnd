@@ -19,7 +19,7 @@ export class SetorDetalheComponent implements OnInit {
 
   //OBJETOS
   public setores: Array<Setor> = new Array;
-  id: number;
+  idSetor: number;
   nome: string;
   descricao: string;
 
@@ -72,10 +72,9 @@ listarTodos(): void {
     }
     );
   }
-
-  excluirSetor(setorId: number):void {
-    this.setorService.excluirSetores(setorId).subscribe(
-      (response: any) => {
+  excluirSetor(idSetor: number):void { console.log(idSetor)
+    this.setorService.excluirSetores(idSetor).subscribe(
+     (response: any) => {
       console.log(response);
       this.setores = response;
       this.router.navigate(['setores/setor-detalhe']);
@@ -86,6 +85,7 @@ listarTodos(): void {
     );
 
 }
+
   navegarTelaSetorE(idSetor: number, nome: string, descricao: string): void {
     this.router.navigate(['setores/setor-listagem'], { queryParams: { idSetor, nome, descricao } });
   }

@@ -23,12 +23,12 @@ export class SetorService {
     return this.httpClient.get<Array<Setor>>(`${this.setorUrl}/listarTodos`);
   }
 
-  atualizarSetor(Setor: any, nome?: string, descrição?: string): Observable<any> {
+  atualizarSetor(id: number, nome: string, descrição: string): Observable<any> {
       return this.httpClient.put<any>(`${this.setorUrl}/atualizar`, Setor);
     }
 
-    excluirSetores(setorId: number): Observable<void> {
-      return this.httpClient.delete<void>(`${this.setorUrl}/${setorId}`);
+    excluirSetores(id: number): Observable<void> {
+      return this.httpClient.delete<void>(`${this.setorUrl}/${id}`);
     }
   }
 
