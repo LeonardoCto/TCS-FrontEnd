@@ -1,0 +1,54 @@
+<body class="flex bg-gray-100 min-h-screen">
+  <div class="flex-grow text-gray-800">
+    <main class="p-6 sm:p-10 space-y-6">
+      <div class="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between">
+        <div class="mr-6">
+          <h1 class="text-4xl font-semibold mb-2">Setores</h1>
+          <h2 class="text-gray-600 ml-0.5">Cadastro de setores</h2>
+        </div>
+        <div class="flex flex-wrap items-start justify-end -mb-3">
+
+        </div>
+      </div>
+      <div class="bg-white p-8 rounded-md w-full">
+        <div class=" flex items-center justify-between pb-6">
+          <div>
+            <h2 class="text-gray-600 font-semibold">Cadastre um novo setor</h2>
+            <form #novoSetorForm="ngForm" class="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
+              <div>
+                <label class="block mb-2 text-sm text-gray-600">Nome</label>
+                <input name= "nome" ngModel type="text" placeholder="Setor"
+              class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+              </div>
+
+              <div>
+                <label class="block mb-2 text-sm text-gray-600 ">Descrição</label>
+                <input name= "descricao" ngModel type="text" placeholder="Detalhe"
+                  class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+              </div>
+
+              <button
+                class="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                <span>Voltar </span>
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 rtl:-scale-x-100" viewBox="0 0 20 20"
+                  fill="currentColor">
+                  <path fill-rule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clip-rule="evenodd" />
+                </svg>
+              </button>
+              <button (click)="inserir(novoSetorForm)"
+              class="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                <span>Salvar</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 rtl:-scale-x-100" viewBox="0 0 20 20"
+                  fill="currentColor">
+                  <path fill-rule="evenodd"
+                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                    clip-rule="evenodd" />
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>

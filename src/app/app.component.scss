@@ -1,0 +1,14 @@
+@import '/src/app/css/estilo.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#sideS
+{
+  right: 1200;
+}
+#titleS
+{
+  font-style: italic;
+  font-size: xx-large;
+}
