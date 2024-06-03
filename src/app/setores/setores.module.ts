@@ -4,12 +4,14 @@ import { SetorListagemComponent } from './setor-listagem/setor-listagem.componen
 import { SetorDetalheComponent } from './setor-detalhe/setor-detalhe.component';
 import { SetoresRoutingModule } from './setores-routing-module';
 import { FormsModule } from '@angular/forms';
+import { SetorVisualizacaoComponent } from './setor-visualizacao/setor-visualizacao.component';
 
 
 @NgModule({
   declarations: [
     SetorListagemComponent,
-    SetorDetalheComponent
+    SetorDetalheComponent,
+    SetorVisualizacaoComponent
   ],
   imports: [
     CommonModule,

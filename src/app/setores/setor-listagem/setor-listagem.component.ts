@@ -28,7 +28,8 @@ export class SetorListagemComponent{
   constructor(private setorService: SetorService, private router: Router, private route: ActivatedRoute) {}
 
   inserir(Form: NgForm): void {
-    this.setorService.inserir({ nome: Form.value.nome, descricao: Form.value.descricao})
+    if(this.idSetor == null){
+      this.setorService.inserir({ nome: Form.value.nome, descricao: Form.value.descricao})
     .subscribe(
       (response: any) => {
         console.log(response.message);
@@ -38,6 +39,10 @@ export class SetorListagemComponent{
         console.error('Erro no registro', error);
       }
     );
+    }else{
+     this.atualizarSetores(this.idSetor, this.nome, this.descricao)
+    }
+
   }
 
   atualizarSetores(idSetor: number, nome: string, descricao: string): void {
