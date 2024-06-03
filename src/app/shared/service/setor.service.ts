@@ -10,6 +10,7 @@ import { Setor } from '../model/Setor';
 })
 export class SetorService {
 
+  readonly API = "";
 
   private setorUrl = 'http://localhost:8080/setores';
 
@@ -19,16 +20,14 @@ export class SetorService {
     return this.httpClient.post<any>(`${this.setorUrl}/inserir`, setorDTO);
   }
 
-<<<<<<< HEAD
    carregarTodosSetores(): Observable<Setor[]> {
-    return this.http.get<Setor[]>('/api/setores'); 
+    return this.httpClient.get<Setor[]>('/api/setores'); 
   }
 
   login(setor: Setor): Observable<Setor> {
     return this.httpClient.post<Setor>(`${this.API}/login`, setor);
-=======
+  }
   listarTodosSetores(): Observable<Array<Setor>> {
     return this.httpClient.get<Array<Setor>>(`${this.setorUrl}/listarTodos`);
->>>>>>> LeonardoCto
   }
-  }
+}

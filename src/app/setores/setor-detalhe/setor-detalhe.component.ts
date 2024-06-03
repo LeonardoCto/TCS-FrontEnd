@@ -10,59 +10,60 @@ import { SetorService } from 'src/app/shared/service/setor.service';
   styleUrls: ['./setor-detalhe.component.scss']
 })
 export class SetorDetalheComponent implements OnInit {
-
   @ViewChild('ngForm', { static: true })
   public ngForm!: NgForm;
 
+  paginatedSetores: Setor[];
+  
   //CONSTRUTOR
   constructor(private setorService: SetorService, private router: Router, private route: ActivatedRoute) {}
-
+  
   //OBJETOS
   public setores: Array<Setor> = new Array;
   nome: string;
   descricao: string;
-
+  
     ngOnInit(): void {
-
+  
      this.listarTodos();
     }
-
+  
     enviarParaSetorCadastro(): void{
       this.router.navigate(['/setores/setor-listagem'])
     }
-
+  
   
    carregarSetores() {
-    this.setorService.getAllSetores().subscribe(setores => {
+    this.setorService.carregarTodosSetores().subscribe(setores => {
       this.setores = setores;
     });
-
-
+  }
+  
+  
   //PAGINAÇÃO LISTA DE SETORES
   currentPage = 1;
   itemsPerPage = 4;
-
-  get paginatedSetores() {
-    const start = (this.currentPage - 1) * this.itemsPerPage;
-    const end = start + this.itemsPerPage;
-    return this.setores.slice(start, end);
-  }
-
+  
   nextPage() {
     if ((this.currentPage * this.itemsPerPage) < this.setores.length) {
       this.currentPage++;
     }
   }
-
+  PaginatedSetores() {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    const end = start + this.itemsPerPage;
+    return this.setores.slice(start, end);
+  }
   previousPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
     }
   }
-///////////////////////////////////////////////////////////////////////
-
-//METODOS DA TELA DE LISTAGEM
-listarTodos(): void {
+  
+  ///////////////////////////////////////////////////////////////////////
+  
+  //METODOS DA TELA DE LISTAGEM
+  listarTodos(): void {
   this.setorService.listarTodosSetores().subscribe(
     (response: any) => {
       console.log(response);
@@ -72,6 +73,5 @@ listarTodos(): void {
     (error) => {
       console.error('Erro no registro', error);
     }
-  );
-}
+  );}
 }
