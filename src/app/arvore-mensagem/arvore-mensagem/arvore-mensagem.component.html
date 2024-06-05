@@ -1,11 +1,13 @@
 <div class="container">
-    <h1>Gráfico de mensagens</h1>
-    <div style="border: 1px solid black">
+  <br/>
+    <h1 class="text-3xl font-semibold text-center">Gráfico de mensagens</h1>
+    <br/>
+    <div>
     
       <ngx-graph
       class="chart-container"
       [view]="[1000, 500]"
-      [showMiniMap]="true"
+      [showMiniMap]="false"
       [links]="grafo.edges"
       [nodes]="grafo.nodes">
           <ng-template #defsTemplate >
