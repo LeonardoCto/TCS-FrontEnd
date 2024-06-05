@@ -17,16 +17,18 @@ export class SetorListagemComponent{
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       console.log(params);
-      if (params['nome'] && params['descricao']) {
+      if (params['idSetor'] && params['nome'] && params['descricao']) {
+        this.idSetor = params['idSetor']
         this.nome = params['nome'];
         this.descricao = params['descricao'];
-        this.idSetor = params['idSetor']
       }
     });
   }
 
   constructor(private setorService: SetorService, private router: Router, private route: ActivatedRoute) {}
 
+
+  //inserir com validação para que se o id for nullo ele inserir e se for != nullo ele chama o metodo atualizar
   inserir(Form: NgForm): void {
     if(this.idSetor == null){
       this.setorService.inserir({ nome: Form.value.nome, descricao: Form.value.descricao})

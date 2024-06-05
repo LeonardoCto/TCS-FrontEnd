@@ -31,9 +31,9 @@ export class SetorService {
    // }
 
 
-   atualizarSetor(id: number, nome: string, descricao: string): Observable<any> {
+   atualizarSetor(idSetor: number, nome: string, descricao: string): Observable<any> {
     const corpoDaSolicitacao = {
-      id: id,
+      idSetor: idSetor,
       nome: nome,
       descricao: descricao
     };
