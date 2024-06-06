@@ -1,12 +1,9 @@
-<div class="container">
-  <br/>
-    <h1 class="text-3xl font-semibold text-center">Gráfico de mensagens</h1>
-    <br/>
-    <div>
-    
+
+    <h1 class="text-3xl font-semibold text-center" style="width: 854px;">Gráfico de mensagens</h1>
+    <div style="width: 854px;">
       <ngx-graph
       class="chart-container"
-      [view]="[1000, 500]"
+      [view]="[854, 605]"
       [showMiniMap]="false"
       [links]="grafo.edges"
       [nodes]="grafo.nodes">
@@ -43,12 +40,17 @@
             </ng-template>
       </ngx-graph>
     </div>
-</div>
 
-<app-formulario-arvore 
-[nodeSelecionada]="nodeSelecionada"
-[edgeSelecionada]="edgeSelecionada"
-[arestas]="grafo.edges"
-(eventoDesselecionar)="selecionarNode(null)"
-(eventoAtualizarGrafo)="atualizarGrafo()"
-></app-formulario-arvore>
+    <!-- Menu de edição -->
+    <div class="absolute inset-y-0 right-0 w-64 bg-gray-300" style="border-left: solid rgb(148, 148, 148) 1px;">
+      <div class="text-center text-xl font-medium mt-2 mb-2">
+        Menu de edição
+      </div>
+      <app-formulario-arvore 
+      [nodeSelecionada]="nodeSelecionada"
+      [edgeSelecionada]="edgeSelecionada"
+      [arestas]="grafo.edges"
+      (eventoDesselecionar)="selecionarNode(null)"
+      (eventoAtualizarGrafo)="atualizarGrafo()"
+      ></app-formulario-arvore>
+</div>
