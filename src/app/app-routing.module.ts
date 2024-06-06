@@ -15,6 +15,10 @@ import { SetorListagemComponent } from './setores/setor-listagem/setor-listagem.
        path: 'setores',
      loadChildren:() => import('./setores/setores.module').then(m => m.SetoresModule)
      },
+     {
+      path: 'home',
+      loadChildren:() => import('./home/home.module').then(m => m.HomeModule)
+     }
    ];
 
 @NgModule({
