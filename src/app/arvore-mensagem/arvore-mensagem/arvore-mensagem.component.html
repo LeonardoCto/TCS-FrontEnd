@@ -5,6 +5,7 @@
       class="chart-container"
       [view]="[854, 605]"
       [showMiniMap]="false"
+      [draggingEnabled]="false"
       [links]="grafo.edges"
       [nodes]="grafo.nodes">
           <ng-template #defsTemplate >
@@ -42,8 +43,8 @@
     </div>
 
     <!-- Menu de edição -->
-    <div class="absolute inset-y-0 right-0 w-64 bg-gray-300" style="border-left: solid rgb(148, 148, 148) 1px;">
-      <div class="text-center text-xl font-medium mt-2 mb-2">
+    <div class="absolute inset-y-0 right-0 w-64 bg-blue-900">
+      <div class="text-center text-white text-xl font-medium mt-2 mb-2">
         Menu de edição
       </div>
       <app-formulario-arvore 

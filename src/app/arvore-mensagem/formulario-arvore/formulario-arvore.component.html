@@ -12,9 +12,9 @@
         <!-- Formulário de adição de mensagem -->
         <div *ngIf="formAdicao && nodeSelecionada != null">
             <form #novaMensagemForm="ngForm">
-                <label class="ml-3">Conteudo da mensagem:</label>
+                <label class="ml-3 text-white">Conteudo da mensagem:</label>
                 <input type="text" name="novaMensagem" style="width: 90%;" class="ml-3 mb-2 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" ngModel>
-                <label class="ml-3">Conteudo da opção:</label>
+                <label class="ml-3 text-white">Conteudo da opção:</label>
                 <input type="text" name="novoInput" style="width: 90%;" class="ml-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" ngModel>
                 <button type="button" (click)="adicionarMensagem(novaMensagemForm)" style="width: 90%;" class="ml-3 mt-3 items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">Adicionar mensagem</button>
             </form>
@@ -23,7 +23,7 @@
         <!-- Formulário de edição de mensagem -->
         <div *ngIf="formEdicaoMensagem && nodeSelecionada != null">
             <form #mensagemEditadaForm="ngForm">
-                <label class="ml-3">Conteudo da mensagem</label>
+                <label class="ml-3 text-white">Conteudo da mensagem</label>
                 <input type="text" name="novoConteudo" style="width: 90%;" class="ml-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" ngModel>
                 <button type="button" (click)="editarMensagem(mensagemEditadaForm)" style="width: 90%;" class="ml-3 mt-3 items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">Salvar edição</button>
             </form>
@@ -32,7 +32,7 @@
         <!-- Formulário de edição de input -->
         <div *ngIf="formEdicaoInput && edgeSelecionada != null">
             <form #inputEditadoForm="ngForm">
-                <label class="ml-3">Conteudo da opção:</label>
+                <label class="ml-3 text-white">Conteudo da opção:</label>
                 <input type="text" name="inputEditado" style="width: 90%;" class="ml-3 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" ngModel>
                 <button type="button" (click)="editarInput(inputEditadoForm)" style="width: 90%;" class="ml-3 mt-3 items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">Salvar edição</button>
             </form>
