@@ -5,6 +5,7 @@ import { InputSalvarDto } from 'src/app/shared/model/dto/InputSalvarDto';
 import { MensagemSalvarDto } from 'src/app/shared/model/dto/MensagemSalvarDto';
 import { NodeGrafoDto } from 'src/app/shared/model/dto/NodeGrafoDto';
 import { ArvoreMensagemService } from '../arvore-mensagem.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-formulario-arvore',
@@ -35,41 +36,80 @@ export class FormularioArvoreComponent {
   }
   
   adicionarMensagem(form: NgForm){
-    this.arvoreMensagemService.adicionarMensagem(this.nodeSelecionada,form)
+    if(form.value.novoInput && form.value.novaMensagem){
+      this.arvoreMensagemService.adicionarMensagem(this.nodeSelecionada,form)
       .subscribe((resultado) => {
         this.eventoAtualizarGrafo.emit();
       },
       (err) => {
         console.log("Erro: " + err);
       });
+    }
+    else {
+      Swal.fire({
+        icon:"error",
+        title:"Campos inválidos",
+        text: "Os campos opção e mensagem são obrigatórios"
+      })
+    }
   }
 
   editarMensagem(form: NgForm){
-    this.arvoreMensagemService.editarMensagem(this.nodeSelecionada, form)
-    .subscribe(() => {
-      this.eventoAtualizarGrafo.emit();
-    }, 
-    (err) =>{ 
-      console.log(err);
-    });
+    if(form.value.novoConteudo){
+      this.arvoreMensagemService.editarMensagem(this.nodeSelecionada, form)
+      .subscribe(() => {
+        this.eventoAtualizarGrafo.emit();
+      }, 
+      (err) =>{ 
+        console.log(err);
+      });
+    }
+    else {
+      Swal.fire({
+        icon:"error",
+        title:"Campo inválido",
+        text: "O campo mensagem é obrigatório"
+      })
+    }
   }
 
   editarInput(form: NgForm){
-    this.arvoreMensagemService.editarInput(this.edgeSelecionada, form)?.subscribe(()=>{
-      this.eventoAtualizarGrafo.emit();
-    },
-    (err)=>{
-      console.log(err);
-    });
+    if(form.value.inputEditado){
+      this.arvoreMensagemService.editarInput(this.edgeSelecionada, form)?.subscribe(()=>{
+        this.eventoAtualizarGrafo.emit();
+      },
+      (err)=>{
+        console.log(err);
+      });
+    }
+    else {
+      Swal.fire({
+        icon:"error",
+        title:"Campo inválido",
+        text: "O campo mensagem é obrigatório"
+      })
+    }
   }
 
   deletarMensagem(node: NodeGrafoDto){
-    this.arvoreMensagemService.deletarMensagem(node).subscribe(()=>{
-      this.eventoAtualizarGrafo.emit();
-    },
-    (err) => {
-      console.log(err);
-    });
+    Swal.fire({
+      icon: "warning",
+      title: "Aviso",
+      text: "Ao deletar uma mensagen todas as opções vinculadas a ela serão deletadas, junto com suas mensagens sucessoras",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      confirmButtonText: "Deletar",
+      cancelButtonText: "Cancelar"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.arvoreMensagemService.deletarMensagem(node).subscribe(()=>{
+          this.eventoAtualizarGrafo.emit();
+        },
+        (err) => {
+          console.log(err);
+        });
+      }
+    })
   }
 
   ativarFormAdicao() {
