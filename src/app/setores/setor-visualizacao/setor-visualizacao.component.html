@@ -1,105 +1,19 @@
 <div class="mx-auto mt-8 max-w-screen-lg px-2">
   <div class="sm:flex sm:items-center sm:justify-between flex-col sm:flex-row">
     <p class="flex-1 text-base font-bold text-gray-900">Usuários do Setor</p>
-    <div class="mt-4 sm:mt-10">
-      <div class="flex items-center justify-start sm:justify-end">
-        <div class="flex items-center">
-        </div>
-      </div>
-    </div>
   </div>
   <div class="mt-6 overflow-hidden rounded-xl border shadow">
     <table class="min-w-full border-separate border-spacing-y-2 border-spacing-x-2">
-      <thead class="hidden border-b lg:table-header-group">
-        <tr class="">
+      <thead class="borda oculta-b lg:table-header-group">
+        <tr>
           <td width="50%" class="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">Nome</td>
           <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">Número</td>
         </tr>
       </thead>
       <tbody class="lg:border-gray-300">
-        <tr class="">
-          <td width="50%" class="whitespace-no-wrap py-4 text-sm font-bold text-gray-900 sm:px-6">
-            <div class="mt-1 lg:hidden">
-            </div>
-          </td>
-          <td class="whitespace-no-wrap py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell">
-            <div class="flex justify-between">
-              <span></span>
-              <button class="text-red-500 hover:text-red-700 focus:outline-none">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-1 12H6L5 7m5-3h4M9 4V2h6v2M4 7h16"></path>
-                </svg>
-              </button>
-            </div>
-          </td>
-        </tr>
-
-        <tr class="">
-          <td class="whitespace-no-wrap hidden py-4 text-sm font-normal text-gray-500 sm:px-6 lg:table-cell"></td>
-          <td class="whitespace-no-wrap py-4 px-6 text-right text-sm text-gray-600 lg:text-left">
-            <div class="flex justify-between">
-              <span></span>
-              <button class="text-red-500 hover:text-red-700 focus:outline-none">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-1 12H6L5 7m5-3h4M9 4V2h6v2M4 7h16"></path>
-                </svg>
-              </button>
-            </div>
-          </td>
-        </tr>
-
-        <tr class="">
-          <td width="50%" class="whitespace-no-wrap py-4 text-sm font-bold text-gray-900 sm:px-6">
-            <div class="mt-1 lg:hidden">
-              <p class="font-normal text-gray-500"></p>
-            </div>
-          </td>
-          <td class="whitespace-no-wrap py-4 px-6 text-right text-sm text-gray-600 lg:text-left">
-            <div class="flex justify-between">
-              <span></span>
-              <button class="text-red-500 hover:text-red-700 focus:outline-none">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-1 12H6L5 7m5-3h4M9 4V2h6v2M4 7h16"></path>
-                </svg>
-              </button>
-            </div>
-          </td>
-        </tr>
-
-        <tr class="">
-          <td width="50%" class="whitespace-no-wrap py-4 text-sm font-bold text-gray-900 sm:px-6">
-            <div class="mt-1 lg:hidden">
-              <p class="font-normal text-gray-500"></p>
-            </div>
-          </td>
-          <td class="whitespace-no-wrap py-4 px-6 text-right text-sm text-gray-600 lg:text-left">
-            <div class="flex justify-between">
-              <span></span>
-              <button class="text-red-500 hover:text-red-700 focus:outline-none">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-1 12H6L5 7m5-3h4M9 4V2h6v2M4 7h16"></path>
-                </svg>
-              </button>
-            </div>
-          </td>
-        </tr>
-
-        <tr class="">
-          <td width="50%" class="whitespace-no-wrap py-4 text-sm font-bold text-gray-900 sm:px-6">
-            <div class="mt-1 lg:hidden">
-              <p class="font-normal text-gray-500"></p>
-            </div>
-          </td>
-          <td class="whitespace-no-wrap py-4 px-6 text-right text-sm text-gray-600 lg:text-left">
-            <div class="flex justify-between">
-              <span></span>
-              <button class="text-red-500 hover:text-red-700 focus:outline-none">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-1 12H6L5 7m5-3h4M9 4V2h6v2M4 7h16"></path>
-                </svg>
-              </button>
-            </div>
-          </td>
+        <tr *ngFor="let usuario of usuario">
+          <td width="50%" class="whitespace-no-wrap py-4 text-sm font-bold text-gray-900 sm:px-6">{{ usuario.nome }}</td>
+            <td class="whitespace-no-wrap py-4 text-sm font-normal text-gray-500 sm:px-6">{{ usuario.telefones }}</td>
         </tr>
       </tbody>
     </table>
@@ -107,7 +21,7 @@
   <div class="mt-4">
     <label for="user-select" class="block text-sm font-medium text-gray-700">Adicionar usuário ao setor</label>
     <select id="user-select" name="user-select" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-      <option >Usuário</option>
+      <option>Usuário</option>
     </select>
   </div>
   <div class="mt-4 flex justify-end space-x-5">
@@ -126,4 +40,5 @@
     </button>
   </div>
 </div>
+
 
