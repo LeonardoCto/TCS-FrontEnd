@@ -74,7 +74,9 @@ export class SetorDetalheComponent implements OnInit {
       queryParams: { idSetor, nome, descricao },
     });
   }
-
+  nagegarTelaVSetor(){
+    this.router.navigate(['setores/setor-visualizacao'])
+  }
   pesquisar(): void {
     if (this.seletor.nome) {
       this.setoresFiltrados = this.setores.filter((setor) =>
@@ -100,8 +102,7 @@ export class SetorDetalheComponent implements OnInit {
       if (retorno.isConfirmed) {
         this.setorService.excluirSetores(idSetor).subscribe(
           (response: any) => {
-            this.setores = response;
-            Swal.fire('Sucesso', 'Setor excluído com sucesso!', 'success');
+            Swal.fire('Sucesso', 'Setor excluído!', 'success');
             this.router.navigate(['setores/setor-detalhe']);
           },
           (error) => {
