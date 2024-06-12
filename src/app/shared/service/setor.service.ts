@@ -1,9 +1,9 @@
-import { SetorDTO } from './../model/SetorDTO';
-import { HttpClient, HttpHeaders  } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Setor } from '../model/Setor';
 import { SetorSeletor } from '../model/seletor/setor.seletor';
+import { SetorDTO } from './../model/SetorDTO';
 
 
 @Injectable({
@@ -39,7 +39,7 @@ export class SetorService {
       return this.httpClient.delete<void>(`${this.setorUrl}/${id}`);
     }
 
-    listarComSeletor(seletor: SetorSeletor){ 
+    listarComSeletor(seletor: SetorSeletor){
       return this.httpClient.post<Array<Setor>>(this.setorUrl + "/seletor", seletor);
     }
   }

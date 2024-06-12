@@ -1,10 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UsuarioService } from 'src/app/shared/service/usuario.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from 'src/app/shared/model/Usuario';
-import { Telefone } from 'src/app/shared/model/Telefone';
-import Swal from 'sweetalert2';
+import { UsuarioService } from 'src/app/shared/service/usuario.service';
 
 @Component({
   selector: 'app-setor-visualizacao',
@@ -27,7 +25,7 @@ import Swal from 'sweetalert2';
      nome:string;
      email: string;
      senha: string;
-     telefone: Telefone[];
+     numero: number;
 
      ngOnInit(): void {
       this.listarTodosUsuarios();
@@ -37,7 +35,6 @@ import Swal from 'sweetalert2';
      this.usuarioService.listarTodosUsuarios().subscribe(
         (response: any) => {
           this.usuario = response;
-          this.router.navigate(['setores/setor-detalhe']);
         },
         (error) => {
           console.error('Erro no registro', error);

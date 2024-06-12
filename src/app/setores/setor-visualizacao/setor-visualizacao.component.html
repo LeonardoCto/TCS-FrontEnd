@@ -11,17 +11,15 @@
         </tr>
       </thead>
       <tbody class="lg:border-gray-300">
-        <tr *ngFor="let usuario of usuario">
-          <td width="50%" class="whitespace-no-wrap py-4 text-sm font-bold text-gray-900 sm:px-6">{{ usuario.nome }}</td>
-            <td class="whitespace-no-wrap py-4 text-sm font-normal text-gray-500 sm:px-6">{{ usuario.telefones }}</td>
-        </tr>
+        <!-- Remove the table rows, as we're moving the data to the combobox -->
       </tbody>
     </table>
   </div>
   <div class="mt-4">
     <label for="user-select" class="block text-sm font-medium text-gray-700">Adicionar usuário ao setor</label>
     <select id="user-select" name="user-select" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-      <option>Usuário</option>
+      <option>Selecionar</option>
+      <option *ngFor="let usuario of usuario" [value]="usuario.numero">{{ usuario.nome }} - {{ usuario.numero }}</option>
     </select>
   </div>
   <div class="mt-4 flex justify-end space-x-5">
@@ -40,5 +38,6 @@
     </button>
   </div>
 </div>
+
 
 
