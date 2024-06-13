@@ -20,4 +20,8 @@ export class UsuarioService {
   listarTodosUsuarios(): Observable<Array<Usuario>> {
     return this.httpClient.get<Array<Usuario>>(`${this.setorUrl}/listarTodos`);
   }
+
+  listarUsuariosSetor(idSetor: number): Observable<Usuario[]> {
+    return this.httpClient.get<Usuario[]>(`${this.setorUrl}/setor/${idSetor}`);
+  }
 }
