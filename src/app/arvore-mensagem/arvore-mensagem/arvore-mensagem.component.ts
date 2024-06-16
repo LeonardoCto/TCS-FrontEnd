@@ -3,6 +3,7 @@ import { ArvoreMensagemService } from '../arvore-mensagem.service';
 import { GrafoMensagemDto } from 'src/app/shared/model/dto/GrafoMensagemDto';
 import { NodeGrafoDto } from 'src/app/shared/model/dto/NodeGrafoDto';
 import { EdgeGrafoDto } from 'src/app/shared/model/dto/EdgeGrafoDto';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-arvore-mensagem',
@@ -13,15 +14,20 @@ export class ArvoreMensagemComponent implements OnInit {
   public grafo : GrafoMensagemDto;
   public nodeSelecionada: NodeGrafoDto | null = null;
   public edgeSelecionada: EdgeGrafoDto | null = null;
+  public idSetor: number;
 
-  constructor(private arvoreMensagemService: ArvoreMensagemService){}
+  constructor(
+    private arvoreMensagemService: ArvoreMensagemService,
+    private route: ActivatedRoute
+  ){}
 
   ngOnInit(){
+    this.idSetor = this.route.snapshot.params["idSetor"];
     this.atualizarGrafo();
   }
 
   atualizarGrafo(){
-    this.arvoreMensagemService.obterArvoreMensagem()
+    this.arvoreMensagemService.obterArvoreMensagem(this.idSetor)
     .subscribe((resultado)=>{
       this.grafo = resultado;
     },

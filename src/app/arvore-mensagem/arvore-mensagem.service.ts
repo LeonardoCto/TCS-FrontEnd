@@ -19,8 +19,8 @@ export class ArvoreMensagemService {
 
   constructor(private http: HttpClient) { }
 
-  obterArvoreMensagem(): Observable<GrafoMensagemDto> {
-    return this.http.get<GrafoMensagemDto>(`${this.urlBase}/grafo/1`);
+  obterArvoreMensagem(idSetor: number): Observable<GrafoMensagemDto> {
+    return this.http.get<GrafoMensagemDto>(`${this.urlBase}/grafo/${idSetor}`);
   }
 
   adicionarMensagem(nodeSelecionada: NodeGrafoDto | null, form: NgForm) {
