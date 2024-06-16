@@ -40,6 +40,9 @@ export class FormularioArvoreComponent {
       this.arvoreMensagemService.adicionarMensagem(this.nodeSelecionada,form)
       .subscribe((resultado) => {
         this.eventoAtualizarGrafo.emit();
+        form.reset();
+        this.nodeSelecionada = null;
+        this.desativarForms();
       },
       (err) => {
         console.log("Erro: " + err);
@@ -59,6 +62,9 @@ export class FormularioArvoreComponent {
       this.arvoreMensagemService.editarMensagem(this.nodeSelecionada, form)
       .subscribe(() => {
         this.eventoAtualizarGrafo.emit();
+        form.reset();
+        this.nodeSelecionada = null;
+        this.desativarForms();
       }, 
       (err) =>{ 
         console.log(err);
@@ -77,6 +83,9 @@ export class FormularioArvoreComponent {
     if(form.value.inputEditado){
       this.arvoreMensagemService.editarInput(this.edgeSelecionada, form)?.subscribe(()=>{
         this.eventoAtualizarGrafo.emit();
+        form.reset();
+        this.edgeSelecionada = null;
+        this.desativarForms();
       },
       (err)=>{
         console.log(err);
@@ -104,6 +113,8 @@ export class FormularioArvoreComponent {
       if (result.isConfirmed) {
         this.arvoreMensagemService.deletarMensagem(node).subscribe(()=>{
           this.eventoAtualizarGrafo.emit();
+          this.nodeSelecionada = null;
+          this.desativarForms();
         },
         (err) => {
           console.log(err);
@@ -131,11 +142,11 @@ export class FormularioArvoreComponent {
     this.formAdicao = false;
     this.formEdicaoMensagem = false;
     this.formEdicaoInput = false;
-    console.log("desativou");
   }
   
   desselecionar(){
     this.nodeSelecionada = null;
+    this.edgeSelecionada = null;
     this.desativarForms();
     this.eventoDesselecionar.emit();
   }
