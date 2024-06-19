@@ -7,7 +7,8 @@ import { SetorVisualizacaoComponent } from './setor-visualizacao/setor-visualiza
 const routes: Routes = [
   {path: 'setor-detalhe', component: SetorDetalheComponent},
   {path: 'setor-listagem', component: SetorListagemComponent },
-  {path: 'setor-visualizacao', component: SetorVisualizacaoComponent }
+  {path: 'setor-visualizacao', component: SetorVisualizacaoComponent },
+  {path: 'setor-visualizacao/:id', component: SetorVisualizacaoComponent }
 ];
 
 @NgModule({

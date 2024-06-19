@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders  } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Usuario } from '../model/Usuario';
@@ -23,5 +23,14 @@ export class UsuarioService {
 
   listarUsuariosSetor(idSetor: number): Observable<Usuario[]> {
     return this.httpClient.get<Usuario[]>(`${this.setorUrl}/setor/${idSetor}`);
+  }
+
+  inserirUsuarioSetor(idUsuario: number, idSetor: number, administrador: boolean): Observable<void> {
+    const params = new HttpParams()
+      .set('idUsuario', idUsuario.toString())
+      .set('idSetor', idSetor.toString())
+      .set('administrador', administrador.toString());
+
+    return this.httpClient.post<void>(`${this.setorUrl}/setorInserirUsuario`, null, { params });
   }
 }

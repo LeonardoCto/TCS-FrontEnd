@@ -21,23 +21,22 @@
   <div class="mt-4">
     <label for="user-select" class="block text-sm font-medium text-gray-700">Adicionar usuário ao setor</label>
     <select id="user-select" name="user-select" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-      <option>Selecionar</option>
+      <option value="">Selecionar</option>
       <option *ngFor="let usuario of usuario" [value]="usuario.id">{{ usuario.nome }} - {{ usuario.numero }}</option>
     </select>
-  </div>
-  <div class="mt-4 flex justify-end space-x-5">
-    <button class="px-20 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-      Salvar
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-      </svg>
-    </button>
-    <button class="px-20 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
-            routerLink="/setores/setor-detalhe">
-      Voltar
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-      </svg>
-    </button>
-  </div>
+<div class="mt-4 flex justify-end space-x-5">
+  <button (click)="adicionarUsuarioAoSetor()" class="px-20 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+    Salvar
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+    </svg>
+  </button>
+  <button class="px-20 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+          routerLink="/setores/setor-detalhe">
+    Voltar
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+    </svg>
+  </button>
+</div>
 </div>

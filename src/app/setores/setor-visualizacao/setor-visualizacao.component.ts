@@ -15,13 +15,14 @@ export class SetorVisualizacaoComponent implements OnInit {
   public ngForm!: NgForm;
 
   usuariosDoSetor: Usuario[] = [];
-  selectedSetorId: number = 1;
+  selectedSetorId!: number;
   public usuario: Array<Usuario> = new Array();
-  id: string;
-  nome: string;
-  email: string;
-  senha: string;
-  numero: number;
+  //novoUsuario: Usuario = new Usuario();
+  id!: string;
+  nome!: string;
+  email!: string;
+  senha!: string;
+  numero!: number;
 
   constructor(
     private usuarioService: UsuarioService,
@@ -30,8 +31,23 @@ export class SetorVisualizacaoComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      if (id) {
+        this.selectedSetorId = +id;
+        this.getUsuariosDoSetor(this.selectedSetorId);
+      } else {
+        console.error('Erro: ID do setor não encontrado na rota');
+      }
+    });
+
     this.listarTodosUsuarios();
-    this.getUsuariosDoSetor(this.selectedSetorId);
+  }
+
+
+  carregarDados(idSetor: number): void {
+    this.getUsuariosDoSetor(idSetor);
+    this.listarTodosUsuarios();
   }
 
   listarTodosUsuarios(): void {
@@ -45,6 +61,24 @@ export class SetorVisualizacaoComponent implements OnInit {
     );
   }
 
+  adicionarUsuarioAoSetor(): void {
+    const idUsuarioSelecionado = +(<HTMLSelectElement>document.getElementById('user-select')).value;
+    if (!idUsuarioSelecionado) {
+      console.error('Nenhum usuário selecionado para adicionar ao setor.');
+      return;
+    }
+    const idSetor = this.selectedSetorId;
+    this.usuarioService.inserirUsuarioSetor(idUsuarioSelecionado, this.selectedSetorId, false).subscribe(
+      () => {
+        console.log('Usuário adicionado ao setor com sucesso.');
+        this.carregarDados(idSetor);
+      },
+      error => {
+        console.error('Erro ao adicionar usuário ao setor:', error);
+      }
+    );
+  }
+
   getUsuariosDoSetor(idSetor: number): void {
     this.usuarioService.listarUsuariosSetor(idSetor).subscribe(
       (usuarios: Usuario[]) => {
@@ -54,5 +88,5 @@ export class SetorVisualizacaoComponent implements OnInit {
         console.error('Erro ao listar usuários do setor', error);
       }
     );
-  }
+}
 }

@@ -74,9 +74,11 @@ export class SetorDetalheComponent implements OnInit {
       queryParams: { idSetor, nome, descricao },
     });
   }
-  nagegarTelaVSetor(){
-    this.router.navigate(['setores/setor-visualizacao'])
-  }
+    nagegarTelaVSetor(id: number) {
+      this.router.navigate(['setores/setor-visualizacao', id]);
+    }
+
+
   pesquisar(): void {
     if (this.seletor.nome) {
       this.setoresFiltrados = this.setores.filter((setor) =>
