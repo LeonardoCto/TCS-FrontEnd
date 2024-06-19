@@ -33,4 +33,13 @@ export class UsuarioService {
 
     return this.httpClient.post<void>(`${this.setorUrl}/setorInserirUsuario`, null, { params });
   }
+
+  excluirUsuarioDoSetor(idUsuario: number, idSetor: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.setorUrl}/excluirUsuarioDoSetor`, {
+      params: new HttpParams()
+        .set('idUsuario', idUsuario.toString())
+        .set('idSetor', idSetor.toString())
+    });
+  }
+
 }
