@@ -3,8 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { ContatoListComponent } from './contato/contato-listagem/contato-listagem.component';
 
 const routes: Routes = [
-  { path: 'contato-listagem', redirectTo: '/contato', pathMatch: 'full' },
-  { path: '/mensagem-recente', component: ContatoListComponent },
+  {
+    path: 'contato', loadChildren: ()=> import('./contato/contato.module')
+    .then(m => m.ContatoModule)
+  }
 ];
 
 @NgModule({

@@ -7,6 +7,7 @@ import { Contato } from '../../shared/model/Contato';
   templateUrl: './contato-listagem.component.html',
   styleUrls: ['./contato-listagem.component.css']
 })
+
 export class ContatoListComponent implements OnInit {
 
   contatos: Contato[] = [];
@@ -15,11 +16,11 @@ export class ContatoListComponent implements OnInit {
   constructor(private contatoService: ContatoService) { }
 
   ngOnInit(): void {
-    this.getContatos();
+    this.carregarContatosOrdenadosPorMensagemRecente();
   }
 
-  getContatos(): void {
-    this.contatoService.listarContatos().subscribe((data: Contato[]) => {
+  carregarContatosOrdenadosPorMensagemRecente(): void {
+    this.contatoService.contatoMensagemRec().subscribe((data: Contato[]) => {
       this.contatos = data;
     });
   }
@@ -36,7 +37,7 @@ export class ContatoListComponent implements OnInit {
         });
       }
     } else {
-      this.getContatos();
+      this.carregarContatosOrdenadosPorMensagemRecente();
     }
   }
 
@@ -57,21 +58,15 @@ export class ContatoListComponent implements OnInit {
   excluirContato(contato: Contato): void {
     if (confirm('Tem certeza que deseja excluir este contato?')) {
       this.contatoService.deletarContato(contato.id).subscribe(() => {
-        this.getContatos();
+        this.carregarContatosOrdenadosPorMensagemRecente(); // Voltar a carregar os contatos ordenados pela mensagem recente após a exclusão
       });
     }
   }
 
   private atualizarContato(contato: Contato): void {
     this.contatoService.atualizarContato(contato.id, contato).subscribe(() => {
-      this.getContatos();
+      this.carregarContatosOrdenadosPorMensagemRecente(); // Voltar a carregar os contatos ordenados pela mensagem recente após a atualização
     });
   }
 
 }
-
-
-
-
-
-
