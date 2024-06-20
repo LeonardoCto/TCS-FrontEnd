@@ -1,0 +1,17 @@
+<p>contato-listagem works!</p>
+<div class="contato-list">
+  <nav class="nav-bar">
+    <input type="search" placeholder="Pesquisar contatos pelo nome" [(ngModel)]="termoPesquisa">
+    <button (click)="pesquisarContatos()">Buscar</button>
+  </nav>
+  <ul>
+    <li *ngFor="let contato of contatos">
+      <span>{{ contato.nome }}</span>
+      <span>{{ contato.mensagemRecente }}</span>
+      <button (click)="editarContato(contato)">Editar</button>
+      <button (click)="excluirContato(contato)">Excluir</button>
+      <button *ngIf="!contato.nome" (click)="adicionarNomeContato(contato)">Adicionar nome</button>
+    </li>
+  </ul>
+</div>
+
