@@ -96,23 +96,27 @@ export class SetorDetalheComponent implements OnInit {
 
   excluirSetor(idSetor: number): void {
     Swal.fire({
-      title: 'Você está certo disso?',
-      text: 'Deseja excluir o setor #' + idSetor + '?',
-      icon: 'warning',
-      showCancelButton: true,
+        title: 'Você está certo disso?',
+        text: 'Deseja excluir o setor #' + idSetor + '?',
+        icon: 'warning',
+        showCancelButton: true,
     }).then((retorno) => {
-      if (retorno.isConfirmed) {
-        this.setorService.excluirSetores(idSetor).subscribe(
-          (response: any) => {
-            Swal.fire('Sucesso', 'Setor excluído!', 'success');
-            this.router.navigate(['setores/setor-detalhe']);
-          },
-          (error) => {
-            Swal.fire('Erro', 'Erro ao excluir o setor: ' + error, 'error');
-            console.error('Erro no registro', error);
-          }
-        );
-      }
+        if (retorno.isConfirmed) {
+            this.setorService.excluirSetores(idSetor).subscribe(
+                (response: any) => {
+                    Swal.fire('Sucesso', 'Setor excluído!', 'success');
+                    this.router.navigate(['setores/setor-detalhe']);
+                },
+                (error) => {
+                    let errorMessage = 'Erro ao excluir o setor: Não é possível excluir setor com usuário vinculado.';
+                    if (error.status === 409) { // Conflito - Violação de integridade referencial
+                        errorMessage = error.error;
+                    }
+                    Swal.fire('Erro', errorMessage, 'error');
+                    console.error('Erro no registro', error);
+                }
+            );
+        }
     });
-  }
+}
 }

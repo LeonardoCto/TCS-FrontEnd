@@ -29,13 +29,20 @@ export class AppComponent {
     });
   }
   ngOnInit(): void{
-    
+
   }
 
   enviarParaSetorDetalhe(): void {
     this.router.navigate(['/setores/setor-detalhe']);
   }
 
+  enviarParaRelatorio(): void {
+    this.router.navigate(['/relatorio/tela-relatorio'])
+  }
+
+  enviarParaHome(): void {
+    this.router.navigate(['/home/tela-principal'])
+  }
 
 }
 

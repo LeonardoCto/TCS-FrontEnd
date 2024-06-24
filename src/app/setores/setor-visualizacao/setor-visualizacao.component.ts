@@ -97,6 +97,7 @@ export class SetorVisualizacaoComponent implements OnInit {
           () => {
             Swal.fire('Sucesso', 'Usuário removido do setor com sucesso.', 'success');
             this.carregarDados(idSetor);
+            
           },
           error => {
             Swal.fire('Erro', 'Erro ao remover usuário do setor: ' + error, 'error');

@@ -1,14 +1,8 @@
-import { Setor } from './shared/model/Setor';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SetorDetalheComponent } from './setores/setor-detalhe/setor-detalhe.component';
-import { SetorListagemComponent } from './setores/setor-listagem/setor-listagem.component';
 
 
-///const routes: Routes = [
- // { path: 'setor-detalhe', component: SetorDetalheComponent },
-  //{ path: 'setor-listagem', component: SetorListagemComponent },
-//];
+
 
    const routes: Routes = [
      {
@@ -18,7 +12,11 @@ import { SetorListagemComponent } from './setores/setor-listagem/setor-listagem.
      {
       path: 'home',
       loadChildren:() => import('./home/home.module').then(m => m.HomeModule)
-     }
+     },
+     {
+      path: 'relatorio',
+      loadChildren:() => import('./relatorio/relatorio.module').then(m => m.RelatorioModule)
+     },
    ];
 
 @NgModule({
