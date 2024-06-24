@@ -61,7 +61,8 @@ export class ListaContatosComponent {
     }
   }
   cancelarEdicaoNome(): void {
-    this.contatoEditando;
+    this.contatoEditando = new Contato();
+    this.carregarContatosOrdenadosPorMensagemRecente();
   }
 
   salvarEdicaoNome(): void {
