@@ -3,5 +3,5 @@ export class Contato {
   nome: string = '';
   numero: string = '';
   mensagemRecente: string = '';
-  automatizado: boolean = false;
+  timestamp: Date = new Date();
 }
