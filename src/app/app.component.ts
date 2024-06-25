@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { Router, RouterOutlet,RouterLink, RouterLinkActive } from '@angular/router';
+import { Router } from '@angular/router';
 import { SetorService } from './shared/service/setor.service';
-import { SetoresModule } from './setores/setores.module';
-import { SetorDetalheComponent } from './setores/setor-detalhe/setor-detalhe.component';
-import { CommonModule } from '@angular/common';
+import { UsuarioService } from './shared/service/usuario.service';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +15,8 @@ export class AppComponent {
 
   constructor(
     private router: Router,
-    private setorService: SetorService
+    private setorService: SetorService,
+    private usuarioService: UsuarioService
   ) {
     this.router.events.subscribe((event) => {
       if (
@@ -30,6 +29,9 @@ export class AppComponent {
 
   }
 
+  get PaginaLogin(): boolean {
+    return this.router.url.includes('/login/tela-login');
+  }
   enviarParaSetorDetalhe(): void {
     this.router.navigate(['/setores/setor-detalhe']);
   }

@@ -3,6 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'login/tela-login',
+    pathMatch: 'full'
+  },
+  {
     path: 'setores',
     loadChildren: () => import('./setores/setores.module').then(m => m.SetoresModule)
   },
