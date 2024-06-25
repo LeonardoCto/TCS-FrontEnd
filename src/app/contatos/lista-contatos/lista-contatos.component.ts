@@ -68,6 +68,7 @@ export class ListaContatosComponent {
   salvarEdicaoNome(): void {
     if (this.contatoEditando) {
       this.contatoService.atualizarContato(this.contatoEditando.id, this.contatoEditando).subscribe(() => {
+        this.contatoEditando = new Contato;
         this.carregarContatosOrdenadosPorMensagemRecente();
       });
     }
