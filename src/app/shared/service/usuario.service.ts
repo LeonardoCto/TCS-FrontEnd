@@ -16,9 +16,7 @@ export class UsuarioService {
   private usuarioUrl = 'http://localhost:8080/usuario';
   private readonly  authUrL = 'http://localhost:8080/auth'
 
-  constructor(private httpClient : HttpClient) {
-
-  }
+  constructor(private httpClient : HttpClient) {}
 
   armazenarTokenJWT(token: string) {
     localStorage.setItem('token', token);
@@ -45,27 +43,36 @@ export class UsuarioService {
   }
 
   listarTodosUsuarios(): Observable<Array<Usuario>> {
-    return this.httpClient.get<Array<Usuario>>(`${this.usuarioUrl}/listarTodos`);
+    let token = this.getToken();
+    const headers = { 'Authorization': 'Bearer ' + token }
+    return this.httpClient.get<Array<Usuario>>(`${this.usuarioUrl}/listarTodos`, {headers});
   }
 
   listarUsuariosSetor(idSetor: number): Observable<Usuario[]> {
-    return this.httpClient.get<Usuario[]>(`${this.usuarioUrl}/setor/${idSetor}`);
+    let token = this.getToken();
+    const headers = { 'Authorization': 'Bearer ' + token }
+    return this.httpClient.get<Usuario[]>(`${this.usuarioUrl}/setor/${idSetor}`, {headers});
   }
 
   inserirUsuarioSetor(idUsuario: number, idSetor: number, administrador: boolean): Observable<void> {
+    let token = this.getToken();
+    const headers = { 'Authorization': 'Bearer ' + token }
     const params = new HttpParams()
       .set('idUsuario', idUsuario.toString())
       .set('idSetor', idSetor.toString())
       .set('administrador', administrador.toString());
 
-    return this.httpClient.post<void>(`${this.usuarioUrl}/setorInserirUsuario`, null, { params });
+    return this.httpClient.post<void>(`${this.usuarioUrl}/setorInserirUsuario`, null, { headers, params },);
   }
 
   excluirUsuarioDoSetor(idUsuario: number, idSetor: number): Observable<void> {
+    let token = this.getToken();
+    const headers = { 'Authorization': 'Bearer ' + token }
     return this.httpClient.delete<void>(`${this.usuarioUrl}/excluirUsuarioDoSetor`, {
       params: new HttpParams()
         .set('idUsuario', idUsuario.toString())
-        .set('idSetor', idSetor.toString())
+        .set('idSetor', idSetor.toString()),
+      headers
     });
   }
 

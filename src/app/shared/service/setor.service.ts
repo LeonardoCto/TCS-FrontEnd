@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Setor } from '../model/Setor';
 import { SetorSeletor } from '../model/seletor/setor.seletor';
 import { SetorDTO } from './../model/SetorDTO';
+import { UsuarioService } from './usuario.service';
 
 
 @Injectable({
@@ -15,39 +16,48 @@ export class SetorService {
 
   private setorUrl = 'http://localhost:8080/setores';
 
-  constructor(private httpClient : HttpClient) {
+  constructor(private httpClient : HttpClient, private usuarioService: UsuarioService) {
 
   }
 
   inserir(setorDTO: SetorDTO, idUsuario: number): Observable<any> {
-    return this.httpClient.post<any>(`${this.setorUrl}/inserir?idUsuario=${idUsuario}`, setorDTO);
+    let token = this.usuarioService.getToken();
+    const headers = { 'Authorization': 'Bearer ' + token }
+    return this.httpClient.post<any>(`${this.setorUrl}/inserir?idUsuario=${idUsuario}`, setorDTO, {headers});
   }
 
    carregarTodosSetores(): Observable<Setor[]> {
-    return this.httpClient.get<Setor[]>('/api/setores'); 
+    let token = this.usuarioService.getToken();
+    const headers = { 'Authorization': 'Bearer ' + token }
+    return this.httpClient.get<Setor[]>('/api/setores', {headers}); 
   }
 
-  login(setor: Setor): Observable<Setor> {
-    return this.httpClient.post<Setor>(`${this.API}/login`, setor);
-  }
   listarTodosSetores(): Observable<Array<Setor>> {
-    return this.httpClient.get<Array<Setor>>(`${this.setorUrl}/listarTodos`);
+    let token = this.usuarioService.getToken();
+    const headers = { 'Authorization': 'Bearer ' + token }
+    return this.httpClient.get<Array<Setor>>(`${this.setorUrl}/listarTodos`, {headers});
   }
 
    atualizarSetor(idSetor: number, nome: string, descricao: string): Observable<any> {
+    let token = this.usuarioService.getToken();
+    const headers = { 'Authorization': 'Bearer ' + token }
     const corpoDaSolicitacao = {
       idSetor: idSetor,
       nome: nome,
       descricao: descricao
     };
-    return this.httpClient.put<any>(`${this.setorUrl}/atualizar`, corpoDaSolicitacao);
+    return this.httpClient.put<any>(`${this.setorUrl}/atualizar`, corpoDaSolicitacao, {headers});
   }
 
     excluirSetores(id: number): Observable<void> {
-      return this.httpClient.delete<void>(`${this.setorUrl}/${id}`);
+      let token = this.usuarioService.getToken();
+      const headers = { 'Authorization': 'Bearer ' + token }
+      return this.httpClient.delete<void>(`${this.setorUrl}/${id}`, {headers});
     }
 
     listarComSeletor(seletor: SetorSeletor){
-      return this.httpClient.post<Array<Setor>>(this.setorUrl + "/seletor", seletor);
+      let token = this.usuarioService.getToken();
+      const headers = { 'Authorization': 'Bearer ' + token }
+      return this.httpClient.post<Array<Setor>>(this.setorUrl + "/seletor", seletor, {headers});
     }
   }

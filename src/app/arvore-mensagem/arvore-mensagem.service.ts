@@ -9,6 +9,7 @@ import { NgForm } from '@angular/forms';
 import { MensagemSalvarDto } from '../shared/model/dto/MensagemSalvarDto';
 import { Mensagem } from '../shared/model/entity/Mensagem';
 import { InputEntity } from '../shared/model/entity/InputEntity';
+import { UsuarioService } from '../shared/service/usuario.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,43 +18,53 @@ export class ArvoreMensagemService {
 
   private readonly urlBase: string = "http://localhost:8080/mensagem";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private usuarioService: UsuarioService) { }
 
   obterArvoreMensagem(idSetor: number): Observable<GrafoMensagemDto> {
-    let token: string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6Imxlb25hcmRvQGhvdG1haWwuY29tIiwiZXhwIjoxNzE5NDQyNzk4fQ.wwf5BGtgxa2nbqrytFIUcSPGUP4CWGJqyS4BpI8qZ2w";
+    let token = this.usuarioService.getToken();
     const headers = { 'Authorization': 'Bearer ' + token }
     return this.http.get<GrafoMensagemDto>(`${this.urlBase}/grafo/${idSetor}`,{ headers });
   }
 
   adicionarMensagem(nodeSelecionada: NodeGrafoDto | null, form: NgForm) {
+    let token = this.usuarioService.getToken();
+    const headers = { 'Authorization': 'Bearer ' + token }
     let requestBody = this.novaMensagem(nodeSelecionada,form);
-    return this.http.post<MensagemSalvarDto>(this.urlBase, requestBody);
+    return this.http.post<MensagemSalvarDto>(this.urlBase, requestBody, {headers});
   }
 
   editarMensagem(nodeSelecionada: NodeGrafoDto | null, form: NgForm) {
+    let token = this.usuarioService.getToken();
+    const headers = { 'Authorization': 'Bearer ' + token }
     let requestBody = this.mensagemEditada(nodeSelecionada,form);
-    return this.http.put<Mensagem>(this.urlBase, requestBody);
+    return this.http.put<Mensagem>(this.urlBase, requestBody, {headers});
   }
   
   deletarMensagem(node: NodeGrafoDto){
+    let token = this.usuarioService.getToken();
+    const headers = { 'Authorization': 'Bearer ' + token }
     let requestBody: Mensagem = new Mensagem(node);
-    return this.http.post<Mensagem>(`${this.urlBase}/delete`, requestBody);
+    return this.http.post<Mensagem>(`${this.urlBase}/delete`, requestBody, {headers});
   }
 
   editarInput(edge: EdgeGrafoDto | null, form: NgForm){
     if(edge == null){
       return;
     }
+    let token = this.usuarioService.getToken();
+    const headers = { 'Authorization': 'Bearer ' + token }
     let requestBody: InputEntity = new InputEntity(edge);
     console.log(form.value.inputEditado);
     requestBody.conteudo = form.value.inputEditado;
-    return this.http.put<InputEntity>("http://localhost:8080/input", requestBody);
+    return this.http.put<InputEntity>("http://localhost:8080/input", requestBody, {headers});
   }
 
   mensagemEditada(node: NodeGrafoDto | null, form: NgForm){
     if(node == null){
       return;
     }
+    let token = this.usuarioService.getToken();
+    const headers = { 'Authorization': 'Bearer ' + token }
     let mensagemEditada = new Mensagem(node)
     mensagemEditada.conteudo = form.value.novoConteudo;
     return mensagemEditada;
