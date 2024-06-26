@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Contato } from 'src/app/shared/model/entity/Contato';
 import { ContatoService } from 'src/app/shared/service/contato.service';
 
@@ -7,7 +7,7 @@ import { ContatoService } from 'src/app/shared/service/contato.service';
   templateUrl: './lista-contatos.component.html',
   styleUrls: ['./lista-contatos.component.scss']
 })
-export class ListaContatosComponent {
+export class ListaContatosComponent implements OnInit {
 
   contatos: Contato[] = [];
   termoPesquisa: string = '';
@@ -29,10 +29,12 @@ export class ListaContatosComponent {
     if (this.termoPesquisa.trim() !== '') {
       if (!isNaN(Number(this.termoPesquisa))) {
         this.contatoService.buscarContatosPorNomeUsuario(this.termoPesquisa).subscribe((contatos: Contato[]) => {
+          console.log(contatos);
           this.contatos = contatos;
         });
       } else {
         this.contatoService.buscarContatosPorTelefone(this.termoPesquisa).subscribe((contatos: Contato[]) => {
+          console.log(contatos);
           this.contatos = contatos;
         });
       }
@@ -41,25 +43,16 @@ export class ListaContatosComponent {
     }
   }
 
-  confirmarEdicao(contato: Contato): void {
-    if (confirm(`Deseja editar o contato ${contato.nome}?`)) {
-      this.editarContato(contato);
-    }
-  }
-
   editarContato(contato: Contato): void {
-    this.contatoEditando = { ...contato };
-  }
-
-  adicionarNomeContato(contato: Contato): void {
     if (!contato.nome) {
-      const novoNome = prompt('Digite o nome para o contato:');
-      if (novoNome) {
-        contato.nome = novoNome;
-        this.atualizarContato(contato);
+      if (confirm(`O contato selecionado não possui um nome. Deseja adicionar um nome a este contato?`)) {
+        this.contatoEditando = { ...contato };
       }
+    } else {
+      this.contatoEditando = { ...contato };
     }
   }
+
   cancelarEdicaoNome(): void {
     this.contatoEditando = new Contato();
     this.carregarContatosOrdenadosPorMensagemRecente();
@@ -68,7 +61,7 @@ export class ListaContatosComponent {
   salvarEdicaoNome(): void {
     if (this.contatoEditando) {
       this.contatoService.atualizarContato(this.contatoEditando.id, this.contatoEditando).subscribe(() => {
-        this.contatoEditando = new Contato;
+        this.contatoEditando = new Contato();
         this.carregarContatosOrdenadosPorMensagemRecente();
       });
     }
@@ -81,10 +74,10 @@ export class ListaContatosComponent {
       });
     }
   }
+
   private atualizarContato(contato: Contato): void {
     this.contatoService.atualizarContato(contato.id, contato).subscribe(() => {
       this.carregarContatosOrdenadosPorMensagemRecente();
     });
   }
-
 }

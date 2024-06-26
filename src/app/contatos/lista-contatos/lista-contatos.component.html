@@ -4,7 +4,7 @@
   <!-- Formulário de pesquisa -->
   <br>
   <form (submit)="pesquisarContatos()">
-    <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+    <label for="search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Pesquisar</label>
     <div class="relative">
       <div class="absolute inset-y-0 start-0 flex items-center pl-3 pointer-events-none">
         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -12,38 +12,39 @@
         </svg>
       </div>
       <input type="search" id="search" name="search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search" [(ngModel)]="termoPesquisa" required />
-      <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+      <button type="submit" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Pesquisa</button>
     </div>
   </form>
-<br>
-<div *ngFor="let contato of contatos" class="p-4 border rounded-lg bg-white group/item hover:bg-slate-100 mb-4">
-  <ng-container *ngIf="contato.id !== contatoEditando?.id; else editarNome">
-    <div class="flex-1 h-3/4">
-      <div class="text-lg font-semibold">{{ contato.nome }}</div>
-      <div class="text-gray-500">{{ contato.mensagemRecente }}</div>
-      <div class="flex justify-end mt-2">
-        <button type="button" class="px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mr-2" (click)="editarContato(contato)">editar nome</button>
-        <button type="button" class="px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" (click)="excluirContato(contato)">excluir</button>
+  <br>
+  <div *ngFor="let contato of contatos" class="p-4 border rounded-lg bg-white group/item hover:bg-slate-100 mb-4">
+    <ng-container *ngIf="contato.id !== contatoEditando?.id; else editarNome">
+      <div class="flex-1 h-3/4">
+        <div class="text-lg font-semibold">{{ contato.nome || contato.numero }}</div>
+        <div class="text-gray-500">{{ contato.mensagemRecente }}</div>
+        <div class="flex justify-end mt-2">
+          <button type="button" class="px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mr-2" (click)="editarContato(contato)">editar nome</button>
+          <button type="button" class="px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" (click)="excluirContato(contato)">excluir</button>
+        </div>
       </div>
-    </div>
-  </ng-container>
+    </ng-container>
 
-  <!-- Formulário de edição do nome -->
-  <ng-template #editarNome>
-    <div class="p-4 border rounded-lg bg-white group/item hover:bg-slate-100 mb-4">
-      <form (submit)="salvarEdicaoNome()">
-        <div class="flex items-center justify-between mb-2">
-          <h2 class="text-lg font-semibold">Editando Nome de {{ contatoEditando?.nome }}</h2>
-        </div>
-        <div class="mb-2">
-          <label for="editNome" class="block text-sm font-medium text-gray-700">Novo Nome:</label>
-          <input type="text" id="editNome" name="editNome" class="block w-full mt-1 p-2 border border-gray-300 rounded-lg" [(ngModel)]="contatoEditando.nome" required />
-        </div>
-        <div class="flex justify-end">
-          <button type="submit" class="px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">Salvar</button>
-          <button type="button" class="px-4 py-2 ml-2 bg-gray-300 text-white rounded-lg hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-gray-300" (click)="cancelarEdicaoNome()">Cancelar</button>
-        </div>
-      </form>
-    </div>
-  </ng-template>
-
+    <!-- Formulário de edição do nome -->
+    <ng-template #editarNome>
+      <div class="p-4 border rounded-lg bg-white group/item hover:bg-slate-100 mb-4">
+        <form (submit)="salvarEdicaoNome()">
+          <div class="flex items-center justify-between mb-2">
+            <h2 class="text-lg font-semibold">Editando Nome de {{ contatoEditando.nome || contatoEditando.numero }}</h2>
+          </div>
+          <div class="mb-2">
+            <label for="editNome" class="block text-sm font-medium text-gray-700">Novo Nome:</label>
+            <input type="text" id="editNome" name="editNome" class="block w-full mt-1 p-2 border border-gray-300 rounded-lg" [(ngModel)]="contatoEditando.nome" required />
+          </div>
+          <div class="flex justify-end">
+            <button type="submit" class="px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">Salvar</button>
+            <button type="button" class="px-4 py-2 ml-2 bg-gray-300 text-white rounded-lg hover:bg-gray-400 focus:ring-4 focus:outline-none focus:ring-gray-300" (click)="cancelarEdicaoNome()">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </ng-template>
+  </div>
+</div>

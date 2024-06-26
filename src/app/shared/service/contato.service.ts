@@ -24,12 +24,12 @@ export class ContatoService {
     return this.http.post<Contato>(`${this.baseUrl}`, contato);
   }
 
-  buscarContatosPorTelefone(telefone: string): Observable<Contato[]> {
-    return this.http.get<Contato[]>(`${this.baseUrl}/telefone/${telefone}`);
+  buscarContatosPorTelefone(numero: string): Observable<Contato[]> {
+    return this.http.get<Contato[]>(`${this.baseUrl}/${numero}`);
   }
 
-  buscarContatosPorNomeUsuario(nomeUsuario: string): Observable<Contato[]> {
-    return this.http.get<Contato[]>(`${this.baseUrl}/usuario/nome/${nomeUsuario}`);
+  buscarContatosPorNomeUsuario(idUsuario: string): Observable<Contato[]> {
+    return this.http.get<Contato[]>(`${this.baseUrl}/usuario/${idUsuario}`);
   }
 
   deletarContato(id: number): Observable<void> {
