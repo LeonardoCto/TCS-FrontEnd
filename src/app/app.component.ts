@@ -1,14 +1,10 @@
 import { Component } from '@angular/core';
-import { Router, RouterOutlet,RouterLink, RouterLinkActive } from '@angular/router';
+import { Router } from '@angular/router';
 import { SetorService } from './shared/service/setor.service';
-import { SetoresModule } from './setores/setores.module';
-import { SetorDetalheComponent } from './setores/setor-detalhe/setor-detalhe.component';
-import { CommonModule } from '@angular/common';
+import { UsuarioService } from './shared/service/usuario.service';
 
 @Component({
   selector: 'app-root',
-  //standalone: true
-  //imports: [CommonModule, RouterOutlet, RouterLinkActive,RouterLink],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
@@ -19,7 +15,8 @@ export class AppComponent {
 
   constructor(
     private router: Router,
-    private setorService: SetorService
+    private setorService: SetorService,
+    private usuarioService: UsuarioService
   ) {
     this.router.events.subscribe((event) => {
       if (
@@ -29,13 +26,23 @@ export class AppComponent {
     });
   }
   ngOnInit(): void{
-    
+
   }
 
+  get PaginaLogin(): boolean {
+    return this.router.url.includes('/login/tela-login');
+  }
   enviarParaSetorDetalhe(): void {
     this.router.navigate(['/setores/setor-detalhe']);
   }
 
+  enviarParaRelatorio(): void {
+    this.router.navigate(['/relatorio/tela-relatorio'])
+  }
+
+  enviarParaHome(): void {
+    this.router.navigate(['/home/tela-principal'])
+  }
 
 }
 

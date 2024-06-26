@@ -19,8 +19,8 @@ export class SetorService {
 
   }
 
-  inserir(setorDTO: SetorDTO): Observable<any> {
-    return this.httpClient.post<any>(`${this.setorUrl}/inserir`, setorDTO);
+  inserir(setorDTO: SetorDTO, idUsuario: number): Observable<any> {
+    return this.httpClient.post<any>(`${this.setorUrl}/inserir?idUsuario=${idUsuario}`, setorDTO);
   }
 
    carregarTodosSetores(): Observable<Setor[]> {

@@ -6,14 +6,25 @@
     <table class="min-w-full border-separate border-spacing-y-2 border-spacing-x-2">
       <thead class="borda oculta-b lg:table-header-group">
         <tr>
-          <td width="50%" class="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">Nome</td>
-          <td class="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">Número</td>
+          <td width="40%" class="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">Nome</td>
+          <td width="40%" class="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">Número</td>
+
+          <td width="20%" class="whitespace-normal py-4 text-sm font-medium text-gray-500 sm:px-6">Ações</td>
         </tr>
       </thead>
       <tbody class="lg:border-gray-300">
         <tr *ngFor="let usuario of usuariosDoSetor">
           <td class="py-4 text-sm text-gray-900">{{ usuario.nome }}</td>
           <td class="py-4 text-sm text-gray-900">{{ usuario.numero }}</td>
+
+          <td class="py-4 text-sm text-gray-900">
+            <button (click)="excluirUsuarioDoSetor(usuario.id)" class="text-red-600 hover:text-red-900">
+              Excluir
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 inline-block ml-2" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V7a1 1 0 10-2 0v5a1 1 0 001 1h2a1 1 0 000-2h-1zm-1 9a1 1 0 110-2h.01a1 1 0 010 2H10z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -21,23 +32,24 @@
   <div class="mt-4">
     <label for="user-select" class="block text-sm font-medium text-gray-700">Adicionar usuário ao setor</label>
     <select id="user-select" name="user-select" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-      <option>Selecionar</option>
+      <option value="">Selecionar</option>
       <option *ngFor="let usuario of usuario" [value]="usuario.id">{{ usuario.nome }} - {{ usuario.numero }}</option>
     </select>
-  </div>
-  <div class="mt-4 flex justify-end space-x-5">
-    <button class="px-20 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-      Salvar
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-      </svg>
-    </button>
-    <button class="px-20 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
-            routerLink="/setores/setor-detalhe">
-      Voltar
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-      </svg>
-    </button>
+    <div class="mt-4 flex justify-end space-x-5">
+      <button (click)="adicionarUsuarioAoSetor()" class="px-20 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+        Salvar
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+        </svg>
+      </button>
+      <button class="px-20 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+              routerLink="/setores/setor-detalhe">
+        Voltar
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 ml-2 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+        </svg>
+      </button>
+    </div>
   </div>
 </div>
+

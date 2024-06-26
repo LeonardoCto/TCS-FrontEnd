@@ -1,38 +1,33 @@
-<div id ='sideS' class="flex">
-  <nav class="flex flex-col bg-blue-900 w-64 h-screen px-4 tex-gray-900 border border-blue-900">
+<div id="sideS" class="flex">
+  <nav *ngIf="!PaginaLogin" class="flex flex-col bg-blue-900 w-64 h-screen px-4 text-gray-900 border border-blue-900">
     <div class="flex flex-wrap mt-10">
-      <div class="w-1/2">
+      <div (click)="enviarParaHome()" class="w-1/2">
         <img width="48" height="48" src="https://img.icons8.com/pulsar-gradient/48/000000/google-logo.png" alt="google-logo" />
-        <span class="font-semibold text-white">Gabriel Henrique</span>
-        <button class="bg-blue-500 text-white px-4 py-2 rounded-md border border-blue-500 hover:bg-white hover:text-blue-500">
-         Administrador
-        </button>
+        <span class="font-semibold text-white" style="cursor: pointer;">GL Sistema</span>
       </div>
     </div>
 
-    <div class="mt-10 mb-2 ">
-      <ul >
-        <li class="mb-2 px-4 py-4 text-gray-100 flex flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg">
-          <img width="35" height="25" src="https://img.icons8.com/pastel-glyph/64/FFFFFF/talk--v1.png" alt="talk--v1"/>
+    <div class="mt-10 mb-2">
+      <ul>
+        <li class="mb-2 px-4 py-4 text-gray-100 flex flex-row border-gray-300 hover:text-black hover:bg-gray-300 hover:font-bold rounded rounded-lg">
+          <img width="35" height="25" src="https://img.icons8.com/pastel-glyph/64/FFFFFF/talk--v1.png" alt="talk--v1" />
           <a href="#">
-            <span class="ml-2" >Mensagens</span>
+            <span class="ml-2">Mensagens</span>
           </a>
         </li>
 
-        <li (click)="enviarParaSetorDetalhe()" class="mb-2 px-4 py-4 text-gray-100 flex flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg" style="cursor: pointer;">
-          <img width="25" height="25" src="https://img.icons8.com/external-kmg-design-basic-outline-kmg-design/32/FFFFFF/external-dashboard-ui-essential-kmg-design-basic-outline-kmg-design.png" alt="external-dashboard-ui-essential-kmg-design-basic-outline-kmg-design"/>
+        <li (click)="enviarParaSetorDetalhe()" class="mb-2 px-4 py-4 text-gray-100 flex flex-row border-gray-300 hover:text-black hover:bg-gray-300 hover:font-bold rounded rounded-lg" style="cursor: pointer;">
+          <img width="25" height="25" src="https://img.icons8.com/external-kmg-design-basic-outline-kmg-design/32/FFFFFF/external-dashboard-ui-essential-kmg-design-basic-outline-kmg-design.png" alt="external-dashboard-ui-essential-kmg-design-basic-outline-kmg-design" />
           <span class="ml-2">Setores</span>
         </li>
 
-        <li class="mb-2 px-4 py-4 text-gray-100 flex flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg">
-          <img width="32" height="32" src="https://img.icons8.com/windows/32/FFFFFF/statistic-file.png" alt="statistic-file"/>
-          <a href="#">
-            <span class="ml-2">Relatórios</span>
-          </a>
+        <li (click)="enviarParaRelatorio()" class="mb-2 px-4 py-4 text-gray-100 flex flex-row border-gray-300 hover:text-black hover:bg-gray-300 hover:font-bold rounded rounded-lg" style="cursor: pointer;">
+          <img width="32" height="32" src="https://img.icons8.com/windows/32/FFFFFF/statistic-file.png" alt="statistic-file" />
+          <span class="ml-2">Relatórios</span>
         </li>
 
-        <li class="mb-2 px-4 py-4 text-gray-100 flex flex-row  border-gray-300 hover:text-black   hover:bg-gray-300  hover:font-bold rounded rounded-lg">
-          <img width="35" height="35" src="https://img.icons8.com/ios/50/FFFFFF/user-male-circle--v1.png" alt="user-male-circle--v1"/>
+        <li class="mb-2 px-4 py-4 text-gray-100 flex flex-row border-gray-300 hover:text-black hover:bg-gray-300 hover:font-bold rounded rounded-lg">
+          <img width="35" height="35" src="https://img.icons8.com/ios/50/FFFFFF/user-male-circle--v1.png" alt="user-male-circle--v1" />
           <a href="#">
             <span class="ml-2">Perfil</span>
           </a>

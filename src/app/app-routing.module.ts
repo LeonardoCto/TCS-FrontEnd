@@ -1,13 +1,12 @@
-import { Setor } from './shared/model/Setor';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SetorDetalheComponent } from './setores/setor-detalhe/setor-detalhe.component';
-import { SetorListagemComponent } from './setores/setor-listagem/setor-listagem.component';
-
-import { AppComponent } from './app.component';
 
 const routes: Routes = [
-  { path: '', component: AppComponent },
+  {
+    path: '',
+    redirectTo: 'login/tela-login',
+    pathMatch: 'full'
+  },
   { 
     path: 'mensagens', loadChildren: ()=> import('./arvore-mensagem/arvore-mensagem.module')
     .then(m => m.ArvoreMensagemModule)
@@ -23,7 +22,19 @@ const routes: Routes = [
   {
     path: 'contatos',
     loadChildren:() => import('./contatos/contatos.module').then(m => m.ContatosModule)
-  }
+  },
+  {
+    path: 'relatorio',
+    loadChildren: () => import('./relatorio/relatorio.module').then(m => m.RelatorioModule)
+  },
+  {
+   path: 'login',
+   loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+  },
+  {
+    path: 'cadastro',
+    loadChildren: () => import('./cadastro/cadatro.module').then(m => m.CadastroModule)
+   },
 ];
 
 @NgModule({

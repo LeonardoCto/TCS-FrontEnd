@@ -14,6 +14,7 @@ export class SetorListagemComponent {
   idSetor: number;
   nome: string;
   descricao: string;
+  idUsuario: number;
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -23,6 +24,7 @@ export class SetorListagemComponent {
         this.nome = params['nome'];
         this.descricao = params['descricao'];
       }
+      this.idUsuario = 1; //usuario que sera relaciado ao criar o setor
     });
   }
 
@@ -33,7 +35,7 @@ export class SetorListagemComponent {
   ) {}
 
   //inserir com validação para que se o id for nullo ele inserir e se for != nullo ele chama o metodo atualizar
-  inserir(Form: NgForm): void {
+  inserir(Form: NgForm, idUsuario: number): void {
     const nome = Form.value.nome;
     const descricao = Form.value.descricao;
 
@@ -49,7 +51,7 @@ export class SetorListagemComponent {
 
     if (this.idSetor == null) {
       this.setorService
-        .inserir({ nome, descricao })
+        .inserir({ nome, descricao }, idUsuario)
         .subscribe(
           (response: any) => {
             Swal.fire('Sucesso', 'Setor cadastrado!', 'success');
