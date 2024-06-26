@@ -33,7 +33,10 @@ export class UsuarioService {
   }
 
   login(loginDTO: LoginDTO): Observable<any> {
-    return this.httpClient.post<any>(`${this.authUrL}/login`, loginDTO);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    return this.httpClient.post<any>(`${this.authUrL}/login`, loginDTO, {headers});
   }
 
   listarTodosUsuarios(): Observable<Array<Usuario>> {

@@ -27,9 +27,9 @@ export class LoginComponent {
 
 //metodo de login
      login(): void {
-      this.usuarioService.login({ email: this.email, senha: this.senha }).subscribe(
+      this.usuarioService.login({ login: this.email, senha: this.senha }).subscribe(
         (response) => {
-         // this.usuarioService.armazenarTokenJWT(response.token);
+         this.usuarioService.armazenarTokenJWT(response.token);
           this.router.navigate(['/home/tela-principal']);
         },
         (error) => {
