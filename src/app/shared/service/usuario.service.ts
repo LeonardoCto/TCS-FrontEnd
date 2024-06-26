@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LoginDTO } from '../model/LoginDTO';
 import { Usuario } from '../model/Usuario';
+import { CadastroDTO } from '../model/CadastroDTO';
 
 
 
@@ -37,6 +38,10 @@ export class UsuarioService {
       'Content-Type': 'application/json'
     });
     return this.httpClient.post<any>(`${this.authUrL}/login`, loginDTO, {headers});
+  }
+
+  cadastro(cadastroDTO: CadastroDTO){
+    return this.httpClient.post<any>(`${this.authUrL}/cadastro`, cadastroDTO);
   }
 
   listarTodosUsuarios(): Observable<Array<Usuario>> {
