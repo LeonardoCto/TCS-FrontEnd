@@ -1,0 +1,8 @@
+<div class="container-mensagens">
+    <div *ngFor="let mensagem of historicoMensagem">
+        <div class="container-mensagem">
+            <div class="conteudo-mensagem">{{mensagem.conteudo}}</div>
+            <div class="data-hora">{{mensagem.dataEnvio | date : 'dd/MM/yyyy HH:mm'}}</div>
+        </div>
+    </div>
+</div>
