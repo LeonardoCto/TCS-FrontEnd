@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GrafoMensagemDto } from '../shared/model/dto/GrafoMensagemDto';
@@ -20,7 +20,9 @@ export class ArvoreMensagemService {
   constructor(private http: HttpClient) { }
 
   obterArvoreMensagem(idSetor: number): Observable<GrafoMensagemDto> {
-    return this.http.get<GrafoMensagemDto>(`${this.urlBase}/grafo/${idSetor}`);
+    let token: string = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoLWFwaSIsInN1YiI6Imxlb25hcmRvQGhvdG1haWwuY29tIiwiZXhwIjoxNzE5NDQyNzk4fQ.wwf5BGtgxa2nbqrytFIUcSPGUP4CWGJqyS4BpI8qZ2w";
+    const headers = { 'Authorization': 'Bearer ' + token }
+    return this.http.get<GrafoMensagemDto>(`${this.urlBase}/grafo/${idSetor}`,{ headers });
   }
 
   adicionarMensagem(nodeSelecionada: NodeGrafoDto | null, form: NgForm) {
