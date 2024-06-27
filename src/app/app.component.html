@@ -1,5 +1,5 @@
 <div id="sideS" class="flex">
-  <nav *ngIf="!PaginaLogin" class="flex flex-col bg-blue-900 w-64 h-screen px-4 text-gray-900 border border-blue-900">
+  <nav *ngIf="!PaginaLogin && !PaginaCadastro" class="flex flex-col bg-blue-900 w-64 h-screen px-4 text-gray-900 border border-blue-900">
     <div class="flex flex-wrap mt-10">
       <div (click)="enviarParaHome()" class="w-1/2">
         <img width="48" height="48" src="https://img.icons8.com/pulsar-gradient/48/000000/google-logo.png" alt="google-logo" />
@@ -39,3 +39,5 @@
     <router-outlet></router-outlet>
   </div>
 </div>
+
+
