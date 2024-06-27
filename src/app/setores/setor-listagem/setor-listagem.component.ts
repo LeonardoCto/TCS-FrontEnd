@@ -24,7 +24,7 @@ export class SetorListagemComponent {
         this.nome = params['nome'];
         this.descricao = params['descricao'];
       }
-      this.idUsuario = 1; //usuario que sera relaciado ao criar o setor
+      this.idUsuario = 1; //usuario que sera relaciado ao criar o setor//passar usuario logado no sistema
     });
   }
 
@@ -67,7 +67,7 @@ export class SetorListagemComponent {
     }
   }
 
-
+//METODO PARA ATUALIZAR SETORES
   atualizarSetores(idSetor: number, nome: string, descricao: string): void {
     this.setorService.atualizarSetor(idSetor, nome, descricao).subscribe(
       (response: any) => {

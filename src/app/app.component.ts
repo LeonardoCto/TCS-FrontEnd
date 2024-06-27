@@ -32,6 +32,10 @@ export class AppComponent {
   get PaginaLogin(): boolean {
     return this.router.url.includes('/login/tela-login');
   }
+
+  get PaginaCadastro(): boolean {
+    return this.router.url.includes('/cadastro/tela-cadastro');
+  }
   enviarParaSetorDetalhe(): void {
     this.router.navigate(['/setores/setor-detalhe']);
   }
@@ -42,6 +46,9 @@ export class AppComponent {
 
   enviarParaHome(): void {
     this.router.navigate(['/home/tela-principal'])
+  }
+  enviarParaPerfil(): void {
+    this.router.navigate(['/perfil/tela-perfil'])
   }
 
 }

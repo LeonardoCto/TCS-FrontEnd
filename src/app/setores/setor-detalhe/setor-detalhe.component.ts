@@ -42,7 +42,7 @@ export class SetorDetalheComponent implements OnInit {
   get paginatedSetores() {
     const start = (this.currentPage - 1) * this.itemsPerPage;
     const end = start + this.itemsPerPage;
-    return this.setoresFiltrados.slice(start, end); // Utilize os setores filtrados
+    return this.setoresFiltrados.slice(start, end);
   }
 
   nextPage() {
@@ -61,11 +61,12 @@ export class SetorDetalheComponent implements OnInit {
     }
   }
 
+  //METODO PARA LISTAR TODOS SETORES
   listarTodos(): void {
     this.setorService.listarTodosSetores().subscribe(
       (response: any) => {
         this.setores = response;
-        this.setoresFiltrados = response; // Inicialmente, setoresFiltrados é igual a setores
+        this.setoresFiltrados = response;
         this.router.navigate(['setores/setor-detalhe']);
       },
       (error) => {
@@ -73,16 +74,19 @@ export class SetorDetalheComponent implements OnInit {
       }
     );
   }
+  //NAVAEGAR TELA SETOR LISTAGEM
   navegarTelaSetorE(idSetor: number, nome: string, descricao: string): void {
     this.router.navigate(['setores/setor-listagem'], {
       queryParams: { idSetor, nome, descricao },
     });
   }
+
+  //NAVEGAR TELA SETOR VISUALIZAÇAO
     nagegarTelaVSetor(id: number) {
       this.router.navigate(['setores/setor-visualizacao', id]);
     }
 
-
+//FILTRO METODO DE PESQUISA
   pesquisar(): void {
     if (this.seletor.nome) {
       this.setoresFiltrados = this.setores.filter((setor) =>
@@ -93,11 +97,13 @@ export class SetorDetalheComponent implements OnInit {
     }
   }
 
+  //METODO LIMPAR PESQUISA
   limpar(): void {
     this.seletor = new SetorSeletor();
-    this.setoresFiltrados = this.setores; // Mostre todos os setores após limpar a pesquisa
+    this.setoresFiltrados = this.setores; // ATUALIZA TABELA
   }
 
+  //METODO PARA EXCLUIR SETOR
   excluirSetor(idSetor: number): void {
     Swal.fire({
         title: 'Você está certo disso?',
