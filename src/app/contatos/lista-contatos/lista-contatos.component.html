@@ -16,7 +16,8 @@
     </div>
   </form>
   <br>
-  <div *ngFor="let contato of contatos" class="p-4 border rounded-lg bg-white group/item hover:bg-slate-100 mb-4">
+
+  <div *ngFor="let contato of contatos" class="p-4 border rounded-lg bg-white group/item hover:bg-slate-100 mb-4" (click)="selecionarContato(contato)">
     <ng-container *ngIf="contato.id !== contatoEditando?.id; else editarNome">
       <div class="flex-1 h-3/4">
         <div class="text-lg font-semibold">{{ contato.nome || contato.numero }}</div>

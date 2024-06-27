@@ -28,8 +28,8 @@ export class ContatoService {
     return this.http.get<Contato[]>(`${this.baseUrl}/${numero}`);
   }
 
-  buscarContatosPorNomeUsuario(idUsuario: string): Observable<Contato[]> {
-    return this.http.get<Contato[]>(`${this.baseUrl}/usuario/${idUsuario}`);
+  buscarContatosPorNomeUsuario(nome: string): Observable<Contato[]> {
+    return this.http.get<Contato[]>(`${this.baseUrl}/nome/${nome}`);
   }
 
   deletarContato(id: number): Observable<void> {

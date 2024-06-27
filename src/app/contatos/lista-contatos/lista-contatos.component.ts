@@ -12,6 +12,7 @@ export class ListaContatosComponent implements OnInit {
   contatos: Contato[] = [];
   termoPesquisa: string = '';
   contatoEditando: Contato = new Contato();
+  contatoSelecionado: Contato | null = null;
 
   constructor(private contatoService: ContatoService) { }
 
@@ -28,20 +29,23 @@ export class ListaContatosComponent implements OnInit {
   pesquisarContatos(): void {
     if (this.termoPesquisa.trim() !== '') {
       if (!isNaN(Number(this.termoPesquisa))) {
+        this.contatoService.buscarContatosPorTelefone(this.termoPesquisa).subscribe((contatos: Contato[]) => {
+          console.log(contatos);
+          this.contatos = contatos;
+        });
+      } else if (/[a-z]/.test(this.termoPesquisa) || /[A-Z]/.test(this.termoPesquisa)) {
         this.contatoService.buscarContatosPorNomeUsuario(this.termoPesquisa).subscribe((contatos: Contato[]) => {
           console.log(contatos);
           this.contatos = contatos;
         });
       } else {
-        this.contatoService.buscarContatosPorTelefone(this.termoPesquisa).subscribe((contatos: Contato[]) => {
-          console.log(contatos);
-          this.contatos = contatos;
-        });
+        console.log("O termo de pesquisa não contém letras.");
       }
     } else {
       this.carregarContatosOrdenadosPorMensagemRecente();
     }
   }
+
 
   editarContato(contato: Contato): void {
     if (!contato.nome) {
@@ -74,7 +78,9 @@ export class ListaContatosComponent implements OnInit {
       });
     }
   }
-
+  selecionarContato(contato: Contato): void {
+    this.contatoSelecionado = contato;
+  }
   private atualizarContato(contato: Contato): void {
     this.contatoService.atualizarContato(contato.id, contato).subscribe(() => {
       this.carregarContatosOrdenadosPorMensagemRecente();
