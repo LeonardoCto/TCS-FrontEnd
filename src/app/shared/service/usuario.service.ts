@@ -77,7 +77,10 @@ export class UsuarioService {
   }
 //SERVICE PARA VALIDAÇÃO SE USUARIO_SETOR ESTA INSERIDO NO SETOR// FEITO COM SERVICE POIS USUARIO_SETOR É USADO NO REPOSITORY
   existsUsuarioNoSetor(idUsuario: number, idSetor: number): Observable<boolean> {
+    let token = this.getToken();
+    const headers = { 'Authorization': 'Bearer ' + token }
     return this.httpClient.get<boolean>(`${this.usuarioUrl}/exists`, {
+      headers,
       params: new HttpParams()
         .set('idUsuario', idUsuario.toString())
         .set('idSetor', idSetor.toString())

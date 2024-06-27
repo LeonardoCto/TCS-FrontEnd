@@ -33,8 +33,9 @@ export class SetorVisualizacaoComponent implements OnInit {
 
   //PARAMETROS PARA PEGAR USUARIOS DO SETOR SELECIONADO
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      const id = params.get('id');
+    this.route.queryParams.subscribe(params => {
+      const id = params['id'];
+      console.log(id);
       if (id) {
         this.selectedSetorId = +id;
         this.getUsuariosDoSetor(this.selectedSetorId);
@@ -66,11 +67,13 @@ export class SetorVisualizacaoComponent implements OnInit {
 //ADICIONAR USUARIO AO SETOR METODO// COM VALIDAÇOES NECESSARIAS PARA USUARIO_SETOR
   adicionarUsuarioAoSetor(): void {
     const idUsuarioSelecionado = +(<HTMLSelectElement>document.getElementById('user-select')).value;
+    console.log(idUsuarioSelecionado);
     if (!idUsuarioSelecionado) {
       Swal.fire('Erro', 'Nenhum usuário selecionado para adicionar ao setor.', 'error');
       return;
     }
     const idSetor = this.selectedSetorId;
+    console.log(this.selectedSetorId);
 
     this.usuarioService.existsUsuarioNoSetor(idUsuarioSelecionado, idSetor).subscribe(
       exists => {

@@ -83,7 +83,7 @@ export class SetorDetalheComponent implements OnInit {
 
   //NAVEGAR TELA SETOR VISUALIZAÇAO
     nagegarTelaVSetor(id: number) {
-      this.router.navigate(['setores/setor-visualizacao', id]);
+      this.router.navigate(['setores/setor-visualizacao'], { queryParams: {id} });
     }
 
 //FILTRO METODO DE PESQUISA
