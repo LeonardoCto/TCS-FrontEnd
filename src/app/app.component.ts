@@ -47,6 +47,9 @@ export class AppComponent {
   enviarParaHome(): void {
     this.router.navigate(['/home/tela-principal'])
   }
+  enviarParaPerfil(): void {
+    this.router.navigate(['/perfil/tela-perfil'])
+  }
 
 }
 
