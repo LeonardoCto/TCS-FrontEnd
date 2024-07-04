@@ -13,11 +13,13 @@ export class ContatoService {
   constructor(private http: HttpClient) { }
 
   listarContatos(): Observable<Contato[]> {
-    return this.http.get<Contato[]>(`${this.baseUrl}`);
+    return this.http.get<Contato[]>(`${this.baseUrl}/${Number(localStorage.getItem("idUsuario"))}`);
   }
 
   contatoMensagemRec(): Observable<Contato[]> {
-    return this.http.get<Contato[]>(`${this.baseUrl}/mensagem-recente`);
+    let token = localStorage.getItem('token');
+    const headers = { 'Authorization': 'Bearer ' + token }
+    return this.http.get<Contato[]>(`${this.baseUrl}/mensagem-recente/${Number(localStorage.getItem("idUsuario"))}`, { headers });
   }
 
   criarContato(contato: Contato): Observable<Contato> {
@@ -29,15 +31,21 @@ export class ContatoService {
   }
 
   buscarContatosPorNomeUsuario(nome: string): Observable<Contato[]> {
-    return this.http.get<Contato[]>(`${this.baseUrl}/nome/${nome}`);
+    let token = localStorage.getItem('token');
+    const headers = { 'Authorization': 'Bearer ' + token }
+    return this.http.get<Contato[]>(`${this.baseUrl}/nome/${nome}`, { headers });
   }
 
   deletarContato(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+    let token = localStorage.getItem('token');
+    const headers = { 'Authorization': 'Bearer ' + token }
+    return this.http.delete<void>(`${this.baseUrl}/${id}`,{ headers });
   }
 
   atualizarContato(id: number, contato: Contato): Observable<Contato> {
-    return this.http.put<Contato>(`${this.baseUrl}/${id}`, contato);
+    let token = localStorage.getItem('token');
+    const headers = { 'Authorization': 'Bearer ' + token }
+    return this.http.put<Contato>(`${this.baseUrl}/${id}`, contato, { headers });
   }
 
   verificarExistencia(numero: string): Observable<string> {

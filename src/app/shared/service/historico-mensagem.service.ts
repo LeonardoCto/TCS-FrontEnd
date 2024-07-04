@@ -12,9 +12,9 @@ export class HistoricoMensagemService {
 
   constructor(private http: HttpClient, private usuarioService: UsuarioService) { }
 
-  buscarHistoricoPorIdUsuario(idUsuario: number) {
+  buscarHistoricoPorIdUsuario(idContato: number) {
     let token = this.usuarioService.getToken();
     const headers = { 'Authorization': 'Bearer ' + token }
-    return this.http.get<MensagemHistorico[]>(`${this.URL_BASE}/${idUsuario}`, {headers});
+    return this.http.get<MensagemHistorico[]>(`${this.URL_BASE}/${idContato}`, {headers});
   }
 }
