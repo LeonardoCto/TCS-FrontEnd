@@ -36,6 +36,11 @@ export class SetorDetalheComponent implements OnInit {
     this.router.navigate(['/setores/setor-listagem']);
   }
 
+  navegarTelaMapeamento(idSetor: number){
+    this.router.navigate(['/mensagens/grafo', idSetor])
+
+  }
+
   currentPage = 1;
   itemsPerPage = 4;
 
