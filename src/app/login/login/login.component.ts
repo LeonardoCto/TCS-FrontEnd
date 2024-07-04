@@ -30,6 +30,7 @@ export class LoginComponent {
       this.usuarioService.login({ login: this.email, senha: this.senha }).subscribe(
         (response) => {
          this.usuarioService.armazenarTokenJWT(response.token);
+         localStorage.setItem("idUsuario", response.idUsuario);
           this.router.navigate(['/home/tela-principal']);
         },
         (error) => {

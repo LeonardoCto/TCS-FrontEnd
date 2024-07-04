@@ -24,7 +24,7 @@ export class SetorListagemComponent {
         this.nome = params['nome'];
         this.descricao = params['descricao'];
       }
-      this.idUsuario = 1; //usuario que sera relaciado ao criar o setor//passar usuario logado no sistema
+      this.idUsuario = Number(localStorage.getItem("idUsuario")); //usuario que sera relaciado ao criar o setor//passar usuario logado no sistema
     });
   }
 
