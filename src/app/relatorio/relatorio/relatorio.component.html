@@ -20,8 +20,8 @@
             <tr>
               <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                 <div>
-                  <div class="text-lg font-bold">Relatório de interações direcionadas para assistência humana</div>
-                  <div class="text-sm text-gray-600 mt-1">Este relatório irá lhe fornecer as interações que necessitaram de intervenção humana para serem solucionadas, assim você poderá criar árvores de mensagens para estas interações.</div>
+                  <div class="text-lg font-bold">Relatório de opções mais utilizadas</div>
+                  <div class="text-sm text-gray-600 mt-1">Este relatório irá lhe fornecer informações sobre as opções mais utilizadas em interações com o atendimento automático no whatsapp, assim você poderá melhorar suas arvores de mensagens.</div>
                 </div>
               </td>
               <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -29,7 +29,7 @@
               </td>
               <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                 <div class="flex items-center justify-between">
-                  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded">Gerar relatório</button>
+                  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded" (click)="gerarRelatorioOpcaoUsos()">Gerar relatório</button>
                 </div>
               </td>
             </tr>
@@ -39,8 +39,8 @@
             <tr>
               <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                 <div>
-                  <div class="text-lg font-bold">Relatório de interações mais frequentes</div>
-                  <div class="text-sm text-gray-600 mt-1">Mensagens mais enviadas por clientes, aqui você poderá visualizar quais são as principais dúvidas recebidas. </div>
+                  <div class="text-lg font-bold">Relatório de opções mais utilizadas por cada contato</div>
+                  <div class="text-sm text-gray-600 mt-1">Este relatório irá lhe fornecer informações sobre as opções mais utilizadas por cada contato que interagiu com o seu atendimento automático no whatsapp, assim você poderá melhorar suas arvores de mensagens. </div>
                 </div>
               </td>
               <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -48,7 +48,7 @@
               </td>
               <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                 <div class="flex items-center justify-between">
-                  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded">Gerar relatório</button>
+                  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded" (click)="gerarRelatorioOpcaoUsosContato()">Gerar relatório</button>
                 </div>
               </td>
             </tr>
