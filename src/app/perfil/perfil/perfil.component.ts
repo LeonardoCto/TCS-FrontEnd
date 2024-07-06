@@ -37,15 +37,26 @@ export class PerfilComponent implements OnInit {
   }
 
   atualizarUsuario(): void {
+    if (!this.validarEmail()) {
+        Swal.fire('Email inválido', 'O email deve conter: "@ .... .com"', 'error');
+        return;
+    }
+
     this.usuarioService.atualizarUsuario(this.usuario).subscribe(
-      usuarioAtualizado => {
-        console.log('Usuário atualizado com sucesso:', usuarioAtualizado);
-        Swal.fire('Sucesso', 'Usuário atualizado com sucesso!', 'success');
-      },
-      error => {
-        console.error('Erro ao atualizar usuário:', error);
-        Swal.fire('Erro', 'Não foi possível atualizar o usuário.', 'error');
-      }
+        usuarioAtualizado => {
+            console.log('Usuário atualizado com sucesso:', usuarioAtualizado);
+            Swal.fire('Sucesso', 'Usuário atualizado com sucesso!', 'success');
+        },
+        error => {
+            console.error('Erro ao atualizar usuário:', error);
+            Swal.fire('Erro', 'Não foi possível atualizar o usuário.', 'error');
+        }
     );
-  }
 }
+
+private validarEmail(): boolean {
+    return /[^@]+@[^@]+\.[a-zA-Z]{2,6}/.test(this.usuario.email);
+}
+
+}
+
