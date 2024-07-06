@@ -5,6 +5,7 @@ import { Setor } from 'src/app/shared/model/Setor';
 import { SetorService } from 'src/app/shared/service/setor.service';
 import { SetorSeletor } from '../../shared/model/seletor/setor.seletor';
 import Swal from 'sweetalert2';
+import { SetorDTO } from 'src/app/shared/model/dto/SetorDTO';
 
 @Component({
   selector: 'app-setor-detalhe',
@@ -22,8 +23,8 @@ export class SetorDetalheComponent implements OnInit {
   ) {}
 
   public seletor: SetorSeletor = new SetorSeletor();
-  public setores: Array<Setor> = new Array();
-  public setoresFiltrados: Array<Setor> = new Array(); // Array para os setores filtrados
+  public setores: Array<SetorDTO> = new Array();
+  public setoresFiltrados: Array<SetorDTO> = new Array(); // Array para os setores filtrados
   idSetor: number;
   nome: string;
   descricao: string;

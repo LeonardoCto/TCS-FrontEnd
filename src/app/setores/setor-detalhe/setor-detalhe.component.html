@@ -49,7 +49,7 @@
                     <div class="flex items-center">
                       <div class="ml-3">
                         <p class="text-gray-900 whitespace-no-wrap">{{ setor.nome }}</p>
-                        <button (click)="navegarTelaMapeamento(setor.idSetor)" class="bg-blue-500 px-4 py-3 rounded-md text-white font-semibold tracking-wide cursor-pointer">Criar/Editar mapeamento de mensagens</button>
+                        <button (click)="navegarTelaMapeamento(setor.id)" class="bg-blue-500 px-4 py-3 rounded-md text-white font-semibold tracking-wide cursor-pointer">Criar/Editar mapeamento de mensagens</button>
                       </div>
                     </div>
                   </td>
@@ -58,12 +58,12 @@
                   </td>
                   <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                     <div class="flex items-center justify-between">
-                      <button style="text-decoration: underline;" (click)="nagegarTelaVSetor(setor.idSetor)">Detalhes setor</button>
-                      <div class="dropdown">
+                      <button style="text-decoration: underline;" (click)="nagegarTelaVSetor(setor.id)">Detalhes setor</button>
+                      <div class="dropdown" *ngIf="setor.administrador == true">
                         <button class="dropbtn">...</button>
                         <div class="dropdown-content">
-                          <button class="px-5 py-5 border-b border-gray-200 bg-white text-sm" (click)="navegarTelaSetorE(setor.idSetor, setor.nome, setor.descricao)">Editar</button>
-                          <button class="px-5 py-5 border-b border-gray-200 bg-white text-sm" (click)="excluirSetor(setor.idSetor)">Excluir</button>
+                          <button class="px-5 py-5 border-b border-gray-200 bg-white text-sm" (click)="navegarTelaSetorE(setor.id, setor.nome, setor.descricao)">Editar</button>
+                          <button class="px-5 py-5 border-b border-gray-200 bg-white text-sm" (click)="excluirSetor(setor.id)">Excluir</button>
                         </div>
                       </div>
                     </div>

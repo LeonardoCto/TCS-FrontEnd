@@ -32,10 +32,10 @@ export class SetorService {
     return this.httpClient.get<Setor[]>('/api/setores', {headers}); 
   }
 
-  listarTodosSetores(): Observable<Array<Setor>> {
+  listarTodosSetores(): Observable<Array<SetorDTO>> {
     let token = this.usuarioService.getToken();
     const headers = { 'Authorization': 'Bearer ' + token }
-    return this.httpClient.get<Array<Setor>>(`${this.setorUrl}/listarTodos`, {headers});
+    return this.httpClient.get<Array<Setor>>(`${this.setorUrl}/porUsuario/${localStorage.getItem("idUsuario")}`, {headers});
   }
 
    atualizarSetor(idSetor: number, nome: string, descricao: string): Observable<any> {
