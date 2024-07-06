@@ -37,11 +37,15 @@ export class PerfilComponent implements OnInit {
   }
 
   atualizarUsuario(): void {
+    if (!this.usuario.nome || !this.usuario.email || !this.usuario.numero || !this.usuario.senha) {
+      Swal.fire('Erro', 'Todos os campos são obrigatórios.', 'error');
+      return;
+    }
     if (!this.validarEmail()) {
         Swal.fire('Email inválido', 'O email deve conter: "@ .... .com"', 'error');
         return;
     }
-
+    
     this.usuarioService.atualizarUsuario(this.usuario).subscribe(
         usuarioAtualizado => {
             console.log('Usuário atualizado com sucesso:', usuarioAtualizado);
