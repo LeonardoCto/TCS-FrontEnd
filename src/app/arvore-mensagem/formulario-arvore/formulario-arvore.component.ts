@@ -34,19 +34,56 @@ export class FormularioArvoreComponent {
   recebeArestas(arestas: EdgeGrafoDto[]){
     this.arestas = arestas;
   }
+
+  validarMensagemAdicao(form: NgForm){
+    let mensagemErro: string = "";
+    if(form.value.novaMensagem.length > 255){
+      mensagemErro += "Conteudo mensagem excede limite de 255 caracteres\n"
+    }
+    if(form.value.novoInput.length > 50){
+      mensagemErro += "Conteudo da opção excede limite de 50 caracteres\n"
+    }
+    return mensagemErro;
+  }
+
+  validarMensagemEdicao(form: NgForm){
+    let mensagemErro: string = "";
+    if(form.value.novoConteudo.length > 255){
+      mensagemErro += "Conteudo da mensagem excede limite de 255 caracteres\n"
+    }
+    return mensagemErro;
+  }
+
+  validarOpcaoEdicao(form: NgForm){
+    let mensagemErro: string = "";
+    if(form.value.inputEditado.length > 50){
+      mensagemErro += "Conteudo da opção excede limite de 50 caracteres\n"
+    }
+    return mensagemErro;
+  }
   
   adicionarMensagem(form: NgForm){
     if(form.value.novoInput && form.value.novaMensagem){
-      this.arvoreMensagemService.adicionarMensagem(this.nodeSelecionada,form)
-      .subscribe((resultado) => {
-        this.eventoAtualizarGrafo.emit();
-        form.reset();
-        this.nodeSelecionada = null;
-        this.desativarForms();
-      },
-      (err) => {
-        console.log("Erro: " + err);
-      });
+      let mensagemErro: string = this.validarMensagemAdicao(form);
+      if(mensagemErro != ""){
+        Swal.fire({
+          icon:"error",
+          title:"Campos inválidos",
+          text: mensagemErro
+        });
+      }
+      else {
+        this.arvoreMensagemService.adicionarMensagem(this.nodeSelecionada,form)
+        .subscribe((resultado) => {
+          this.eventoAtualizarGrafo.emit();
+          form.reset();
+          this.nodeSelecionada = null;
+          this.desativarForms();
+        },
+        (err) => {
+          console.log("Erro: " + err);
+        });
+      }
     }
     else {
       Swal.fire({
@@ -67,16 +104,27 @@ export class FormularioArvoreComponent {
 
   editarMensagem(form: NgForm){
     if(form.value.novoConteudo){
-      this.arvoreMensagemService.editarMensagem(this.nodeSelecionada, form)
-      .subscribe(() => {
-        this.eventoAtualizarGrafo.emit();
-        form.reset();
-        this.nodeSelecionada = null;
-        this.desativarForms();
-      }, 
-      (err) =>{ 
-        console.log(err);
-      });
+      let mensagemErro: string = this.validarMensagemEdicao(form);
+      console.log("chegou aqui");
+      if(mensagemErro != ""){
+        Swal.fire({
+          icon:"error",
+          title:"Campo inválido",
+          text: mensagemErro
+        });
+      }
+      else {
+        this.arvoreMensagemService.editarMensagem(this.nodeSelecionada, form)
+        .subscribe(() => {
+          this.eventoAtualizarGrafo.emit();
+          form.reset();
+          this.nodeSelecionada = null;
+          this.desativarForms();
+        }, 
+        (err) =>{ 
+          console.log(err);
+        });
+      }
     }
     else {
       Swal.fire({
@@ -89,15 +137,25 @@ export class FormularioArvoreComponent {
 
   editarInput(form: NgForm){
     if(form.value.inputEditado){
-      this.arvoreMensagemService.editarInput(this.edgeSelecionada, form)?.subscribe(()=>{
-        this.eventoAtualizarGrafo.emit();
-        form.reset();
-        this.edgeSelecionada = null;
-        this.desativarForms();
-      },
-      (err)=>{
-        console.log(err);
-      });
+      let mensagemErro: string = this.validarOpcaoEdicao(form);
+      if(mensagemErro != ""){
+        Swal.fire({
+          icon:"error",
+          title:"Campo inválido",
+          text: mensagemErro
+        });
+      }
+      else {
+        this.arvoreMensagemService.editarInput(this.edgeSelecionada, form)?.subscribe(()=>{
+          this.eventoAtualizarGrafo.emit();
+          form.reset();
+          this.edgeSelecionada = null;
+          this.desativarForms();
+        },
+        (err)=>{
+          console.log(err);
+        });
+      }
     }
     else {
       Swal.fire({
