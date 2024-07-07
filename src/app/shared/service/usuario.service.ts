@@ -87,4 +87,12 @@ export class UsuarioService {
     });
   }
 
+  buscarUsuarioPorId(id: number): Observable<Usuario> {
+    return this.httpClient.get<Usuario>(`${this.usuarioUrl}/${id}`);
+  }
+
+  atualizarUsuario(usuario: Usuario): Observable<Usuario> {
+    return this.httpClient.put<Usuario>(`${this.usuarioUrl}/${usuario.id}`, usuario);
+  }
+
 }
