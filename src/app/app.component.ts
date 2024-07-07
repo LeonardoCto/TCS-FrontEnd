@@ -55,6 +55,12 @@ export class AppComponent {
     this.router.navigate(['/contatos/historico-mensagem']);
   }
 
+  sair(){
+    localStorage.setItem("token", "");
+    localStorage.setItem("idUsuario","");
+    this.router.navigate(["/login/tela-login"]);
+  }
+
 }
 
 
