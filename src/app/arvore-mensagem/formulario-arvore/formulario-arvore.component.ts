@@ -57,6 +57,14 @@ export class FormularioArvoreComponent {
     }
   }
 
+  verificarNodeSelecionadaRaiz(){
+    let nodeEncontrada = this.arestas.find((element) => element.target == this.nodeSelecionada?.id)
+    if(nodeEncontrada == null || nodeEncontrada == undefined){
+      return true;
+    }
+    return false;
+  }
+
   editarMensagem(form: NgForm){
     if(form.value.novoConteudo){
       this.arvoreMensagemService.editarMensagem(this.nodeSelecionada, form)
