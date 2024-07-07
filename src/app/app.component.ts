@@ -51,6 +51,10 @@ export class AppComponent {
     this.router.navigate(['/perfil/tela-perfil'])
   }
 
+  enviarParaHistoricoMensagens(): void{
+    this.router.navigate(['/contatos/historico-mensagem']);
+  }
+
 }
 
 
