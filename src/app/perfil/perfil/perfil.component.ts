@@ -14,7 +14,7 @@ export class PerfilComponent implements OnInit {
     id: 0,
     nome: '',
     email: '',
-    numero: '',
+    telefone: '',
     senha: ''
   };
 
@@ -40,7 +40,7 @@ export class PerfilComponent implements OnInit {
   }
 
   atualizarUsuario(): void {
-    if (!this.usuario.nome || !this.usuario.email || !this.usuario.numero || !this.usuario.senha) {
+    if (!this.usuario.nome || !this.usuario.email || !this.usuario.telefone || !this.usuario.senha) {
       Swal.fire('Erro', 'Todos os campos são obrigatórios.', 'error');
       return;
     }
