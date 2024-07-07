@@ -88,11 +88,15 @@ export class UsuarioService {
   }
 
   buscarUsuarioPorId(id: number): Observable<Usuario> {
-    return this.httpClient.get<Usuario>(`${this.usuarioUrl}/${id}`);
+    let token = this.getToken();
+    const headers = { 'Authorization': 'Bearer ' + token }
+    return this.httpClient.get<Usuario>(`${this.usuarioUrl}/${id}`, { headers });
   }
 
   atualizarUsuario(usuario: Usuario): Observable<Usuario> {
-    return this.httpClient.put<Usuario>(`${this.usuarioUrl}/${usuario.id}`, usuario);
+    let token = this.getToken();
+    const headers = { 'Authorization': 'Bearer ' + token }
+    return this.httpClient.put<Usuario>(`${this.usuarioUrl}/${usuario.id}`, usuario, {headers});
   }
 
 }
