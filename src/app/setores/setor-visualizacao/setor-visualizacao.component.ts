@@ -15,6 +15,8 @@ export class SetorVisualizacaoComponent implements OnInit {
   @ViewChild('ngForm', { static: true })
   public ngForm!: NgForm;
 
+  public idUsuarioLogado: string;
+
   usuariosDoSetor: Usuario[] = [];
   selectedSetorId!: number;
   public usuario: Array<Usuario> = new Array();
@@ -45,6 +47,12 @@ export class SetorVisualizacaoComponent implements OnInit {
     });
 
     this.listarTodosUsuarios();
+
+    let idUsuario = localStorage.getItem("idUsuario");
+
+    if(idUsuario != null){
+      this.idUsuarioLogado = idUsuario;
+    }
   }
 
 //MERODO PARA ATUALIZAR TABELA APOS ADICIONAR USUARIO AO SETOR
