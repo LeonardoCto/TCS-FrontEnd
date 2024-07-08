@@ -45,8 +45,7 @@ export class ListaContatosComponent implements OnInit {
       this.carregarContatosOrdenadosPorMensagemRecente();
     }
   }
-
-
+  
   editarContato(contato: Contato): void {
     if (!contato.nome) {
       if (confirm(`O contato selecionado não possui um nome. Deseja adicionar um nome a este contato?`)) {
@@ -78,9 +77,11 @@ export class ListaContatosComponent implements OnInit {
       });
     }
   }
+
   selecionarContato(contato: Contato): void {
     this.contatoSelecionado = contato;
   }
+
   private atualizarContato(contato: Contato): void {
     this.contatoService.atualizarContato(contato.id, contato).subscribe(() => {
       this.carregarContatosOrdenadosPorMensagemRecente();

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Contato } from 'src/app/shared/model/entity/Contato';
 import { MensagemHistorico } from 'src/app/shared/model/entity/MensagemHistorico';
 import { HistoricoMensagemService } from 'src/app/shared/service/historico-mensagem.service';
 
@@ -7,15 +8,23 @@ import { HistoricoMensagemService } from 'src/app/shared/service/historico-mensa
   templateUrl: './historico-mensagem.component.html',
   styleUrls: ['./historico-mensagem.component.scss']
 })
-export class HistoricoMensagemComponent implements OnInit {
-  // idUsuario valor virá do componente de lista de usuários
-  public idUsuario: number = 1;
+export class HistoricoMensagemComponent implements OnInit, OnChanges {
+  public idUsuario: number;
   public historicoMensagem: MensagemHistorico[] = [];
+
+  @Input() contatoSelecionado: Contato | null = null;
 
   constructor(private historicoMensagemService: HistoricoMensagemService){}
 
   ngOnInit(): void {
     this.obterHistoricoMensagem();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['contatoSelecionado'] && this.contatoSelecionado) {
+      this.idUsuario = this.contatoSelecionado.id;
+      this.obterHistoricoMensagem();
+    }
   }
 
   obterHistoricoMensagem(){
