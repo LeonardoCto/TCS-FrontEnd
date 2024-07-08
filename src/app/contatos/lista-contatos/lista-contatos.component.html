@@ -23,7 +23,9 @@
         <div class="text-lg font-semibold">{{ contato.nome || contato.numero }}</div>
         <div class="text-gray-500">{{ contato.mensagemRecente }}</div>
         <div class="flex justify-end mt-2">
-          <button type="button" class="px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mr-2" (click)="editarContato(contato)">editar nome</button>
+          <button *ngIf="contato.automatizado" type="button" class="px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mr-2">Automatizado</button>
+          <button *ngIf="!contato.automatizado" type="button" class="px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mr-2">Atendimento manual</button>
+          <button type="button" class="px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mr-2" (click)="editarContato(contato)">editar contato</button>
           <button type="button" class="px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" (click)="excluirContato(contato)">excluir</button>
         </div>
       </div>
@@ -39,6 +41,8 @@
           <div class="mb-2">
             <label for="editNome" class="block text-sm font-medium text-gray-700">Novo Nome:</label>
             <input type="text" id="editNome" name="editNome" class="block w-full mt-1 p-2 border border-gray-300 rounded-lg" [(ngModel)]="contatoEditando.nome" required />
+            <label for="editAutomatizado" class="block text-sm font-medium text-gray-700">Automatizado:</label>
+            <input type="checkbox" id="editAutomatizado" name="editAutomatizado" [(ngModel)]="contatoEditando.automatizado">
           </div>
           <div class="flex justify-end">
             <button type="submit" class="px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">Salvar</button>

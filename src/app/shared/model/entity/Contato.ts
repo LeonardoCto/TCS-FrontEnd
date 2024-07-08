@@ -4,4 +4,5 @@ export class Contato {
   numero: string = '';
   mensagemRecente: string = '';
   timestamp: Date = new Date();
+  automatizado: boolean;
 }
