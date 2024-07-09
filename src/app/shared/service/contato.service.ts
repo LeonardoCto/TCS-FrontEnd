@@ -19,7 +19,7 @@ export class ContatoService {
   contatoMensagemRec(): Observable<Contato[]> {
     let token = localStorage.getItem('token');
     const headers = { 'Authorization': 'Bearer ' + token }
-    return this.http.get<Contato[]>(`${this.baseUrl}/mensagem-recente/${Number(localStorage.getItem("idUsuario"))}`, { headers });
+    return this.http.get<Contato[]>(`${this.baseUrl}/mensagem-recente/${localStorage.getItem("idUsuario")}`, { headers });
   }
 
   criarContato(contato: Contato): Observable<Contato> {

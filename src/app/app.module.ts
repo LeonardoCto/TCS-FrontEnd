@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { AppRoutingModule } from './app-routing.module'; // Importação correta
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [

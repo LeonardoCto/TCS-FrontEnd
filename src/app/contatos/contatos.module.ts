@@ -5,6 +5,7 @@ import { ContatosRoutingModule } from './contatos-routing.module';
 import { HistoricoMensagemComponent } from './historico-mensagem/historico-mensagem.component';
 import { ListaContatosComponent } from './lista-contatos/lista-contatos.component';
 import { FormsModule } from '@angular/forms';
+import { FormatacaoModule } from '../formatacao/formatacao.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ContatosRoutingModule,
-    FormsModule
+    FormsModule,
+    FormatacaoModule
   ]
 })
 export class ContatosModule { }
