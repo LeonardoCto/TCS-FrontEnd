@@ -31,6 +31,7 @@ export class PerfilComponent implements OnInit {
     this.usuarioService.buscarUsuarioPorId(id).subscribe(
       usuario => {
         this.usuario = usuario;
+        this.usuario.senha = "";
         console.log('Usuário encontrado:', usuario);
       },
       error => {
@@ -40,13 +41,22 @@ export class PerfilComponent implements OnInit {
   }
 
   atualizarUsuario(): void {
-    if (!this.usuario.nome || !this.usuario.email || !this.usuario.telefone || !this.usuario.senha) {
+    if (!this.usuario.nome || !this.usuario.email || !this.usuario.telefone) {
       Swal.fire('Erro', 'Todos os campos são obrigatórios.', 'error');
       return;
     }
     if (!this.validarEmail()) {
         Swal.fire('Email inválido', 'O email deve conter: "@ .... .com"', 'error');
         return;
+    }
+
+    if(this.usuario.telefone.length != 13){
+      Swal.fire({
+        icon: "error",
+        title: "Telefone inválido",
+        text: "O telefone deve conter o código do pais, código de área e o numero em si, exemplo: 5548999998888"
+      })
+      return;
     }
     
     this.usuarioService.atualizarUsuario(this.usuario).subscribe(
