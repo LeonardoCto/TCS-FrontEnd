@@ -27,7 +27,9 @@ export class ContatoService {
   }
 
   buscarContatosPorTelefone(numero: string): Observable<Contato[]> {
-    return this.http.get<Contato[]>(`${this.baseUrl}/${numero}`);
+    let token = localStorage.getItem('token');
+    const headers = { 'Authorization': 'Bearer ' + token }
+    return this.http.get<Contato[]>(`${this.baseUrl}/numero/${numero}`, { headers });
   }
 
   buscarContatosPorNomeUsuario(nome: string): Observable<Contato[]> {

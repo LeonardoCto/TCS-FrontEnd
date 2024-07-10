@@ -57,6 +57,7 @@ export class CadastroComponent {
         console.log(cadastroDTO);
         this.usuarioService.cadastro(cadastroDTO).subscribe(
           (response) => {
+            console.log(response);
             this.router.navigate(['/login/tela-login']);
           },
           (error) => {
