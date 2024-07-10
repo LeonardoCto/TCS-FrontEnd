@@ -99,4 +99,8 @@ export class UsuarioService {
     return this.httpClient.put<Usuario>(`${this.usuarioUrl}/${usuario.id}`, usuario, {headers});
   }
 
+  gerarQrCode(): Observable<Blob> {
+    return this.httpClient.get("http://localhost:9000/criar-sessao/" + localStorage.getItem("idUsuario"), { responseType: 'blob' });
+  }  
+
 }

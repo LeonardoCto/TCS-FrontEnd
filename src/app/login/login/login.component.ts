@@ -10,9 +10,13 @@ import { NgForm } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   @ViewChild('ngForm', { static: true })
   public ngForm!: NgForm;
+
+  loginEfetuado: boolean = false;
+
+  imageUrl: string;
 
   email: string;
   senha: string;
@@ -24,6 +28,10 @@ export class LoginComponent {
     private router: Router,
     private route: ActivatedRoute)
      {}
+    
+    ngOnInit(): void {
+
+    }
 
 //metodo de login
      login(): void {
@@ -31,7 +39,18 @@ export class LoginComponent {
         (response) => {
          this.usuarioService.armazenarTokenJWT(response.token);
          localStorage.setItem("idUsuario", response.idUsuario);
-          this.router.navigate(['/home/tela-principal']);
+         this.loginEfetuado = true;
+         this.usuarioService.gerarQrCode().subscribe(
+          data => {
+            this.loginEfetuado = false;
+            const reader = new FileReader();
+            reader.onload = () => {
+              this.imageUrl = reader.result as string;
+            };
+            reader.readAsDataURL(data);
+          },
+          err => {console.log(err)}
+        )
         },
         (error) => {
           console.error('Erro de login:', error);
@@ -42,5 +61,9 @@ export class LoginComponent {
 
   enviarParaCadastro(): void {
     this.router.navigate(['/cadastro/tela-cadastro']);
+  }
+
+  enviarParaHome(): void{
+    this.router.navigate(['/home/tela-principal']);
   }
 }
